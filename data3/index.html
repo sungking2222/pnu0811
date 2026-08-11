@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="ko" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI 기업 가치 TOP 10 (2026년 1월 기준)</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0f6ff',
+                            100: '#e0edff',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                            900: '#1e3a8a',
+                        },
+                        darkbg: '#0b0f17',
+                        cardbg: '#161e2e',
+                        bordercolor: '#2a364f'
+                    },
+                    fontFamily: {
+                        sans: ['Noto Sans KR', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: #0b0f17;
+            color: #f3f4f6;
+        }
+        .glass-panel {
+            background: rgba(22, 30, 46, 0.75);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .glow-effect {
+            box-shadow: 0 0 25px -5px rgba(59, 130, 246, 0.15);
+        }
+        .glow-effect:hover {
+            box-shadow: 0 0 30px -2px rgba(59, 130, 246, 0.3);
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0b0f17;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1f293d;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #374151;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col selection:bg-blue-600 selection:text-white pb-12">
+
+    <!-- Navbar Header -->
+    <header class="sticky top-0 z-40 glass-panel border-b border-gray-800/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-2 sm:gap-3">
+                <!-- Home Button -->
+                <a href="../index.html" class="px-3 py-1.5 rounded-lg bg-gray-800 hover:bg-gray-700 text-gray-200 transition text-xs font-medium flex items-center gap-1.5 border border-gray-700 mr-1" title="홈으로 이동">
+                    <i class="fa-solid fa-house text-blue-400"></i>
+                    <span class="hidden sm:inline">홈</span>
+                </a>
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-500 flex items-center justify-center text-white shadow-lg shadow-blue-500/30">
+                    <i class="fa-solid me-0.5 fa-brain text-xl"></i>
+                </div>
+                <div>
+                    <span class="text-xs font-semibold tracking-wider text-blue-400 uppercase">Knowledge-kr</span>
+                    <h1 class="text-base sm:text-lg font-bold text-white leading-none">AI 기업 가치 TOP 10</h1>
+                </div>
+            </div>
+            
+            <div class="flex items-center gap-2 sm:gap-3 text-xs sm:text-sm">
+                <span class="hidden md:inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-blue-900/50 text-blue-300 border border-blue-700/50">
+                    <i class="fa-regular fa-calendar-check mr-1.5"></i> 2026년 1월 기준
+                </span>
+                <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-gray-800 text-gray-300 border border-gray-700">
+                    <i class="fa-solid fa-user-pen mr-1.5 text-blue-400"></i> sungbin
+                </span>
+                <button onclick="openMethodologyModal()" class="px-3 py-1.5 rounded-lg bg-gray-800 hover:bg-gray-700 text-gray-200 transition text-xs font-medium flex items-center gap-1.5 border border-gray-700">
+                    <i class="fa-solid fa-circle-info text-blue-400"></i>
+                    <span>산정 기준</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 flex-1 w-full space-y-8">
+
+        <!-- Hero Section & Overview -->
+        <section class="glass-panel rounded-2xl p-6 sm:p-8 relative overflow-hidden glow-effect">
+            <div class="absolute -top-24 -right-24 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="absolute -bottom-24 -left-24 w-96 h-96 bg-indigo-600/10 rounded-full blur-3xl pointer-events-none"></div>
+
+            <div class="relative z-10 max-w-4xl">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-semibold mb-4">
+                    <i class="fa-solid fa-chart-line"></i> Global AI Market Industry Report
+                </div>
+                <h2 class="text-2xl sm:text-4xl font-extrabold text-white tracking-tight leading-snug">
+                    글로벌 AI 산업을 이끄는 <br class="sm:hidden"><span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-300 to-purple-400">대표 기업 10선과 기업가치</span>
+                </h2>
+                <p class="mt-4 text-gray-300 text-sm sm:text-base leading-relaxed">
+                    AI 기술이 기업 성장과 가치의 핵심 동력으로 작용하는 상장 및 비상장 기업을 종합 고려하여 선정했습니다.
+                    반도체, 클라우드, 생성형 AI, 자율주행, 로보틱스 분야를 망라한 시장 지배력 분석 자료입니다.
+                </p>
+
+                <!-- Quick Summary KPI Stats -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8 pt-6 border-t border-gray-800">
+                    <div class="bg-gray-900/60 p-3.5 rounded-xl border border-gray-800">
+                        <span class="text-xs text-gray-400 block mb-1">1위 기업 (AI 영향력)</span>
+                        <div class="text-lg font-bold text-white flex items-center gap-2">
+                            <span>엔비디아</span>
+                            <span class="text-xs text-green-400 font-normal">Rank #1</span>
+                        </div>
+                    </div>
+                    <div class="bg-gray-900/60 p-3.5 rounded-xl border border-gray-800">
+                        <span class="text-xs text-gray-400 block mb-1">최고 시가총액</span>
+                        <div class="text-lg font-bold text-white">
+                            약 4,000조 원 <span class="text-xs text-gray-400 font-normal">(MS)</span>
+                        </div>
+                    </div>
+                    <div class="bg-gray-900/60 p-3.5 rounded-xl border border-gray-800">
+                        <span class="text-xs text-gray-400 block mb-1">상장 / 비상장 비율</span>
+                        <div class="text-lg font-bold text-white">
+                            7개 <span class="text-xs font-normal text-gray-400">/ 3개</span>
+                        </div>
+                    </div>
+                    <div class="bg-gray-900/60 p-3.5 rounded-xl border border-gray-800">
+                        <span class="text-xs text-gray-400 block mb-1">비상장 최고 가치</span>
+                        <div class="text-lg font-bold text-white">
+                            약 150조 원 <span class="text-xs text-gray-400 font-normal">(OpenAI)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Controls Section: Search, Category Filters, View Switcher -->
+        <section class="flex flex-col md:flex-row gap-4 justify-between items-stretch md:items-center bg-gray-900/40 p-4 rounded-xl border border-gray-800">
+            <!-- Search Bar -->
+            <div class="relative flex-1 max-w-md">
+                <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-500"></i>
+                <input type="text" id="searchInput" oninput="filterAndRender()" placeholder="기업명, 산업 분야, 관련 키워드 검색..." 
+                       class="w-full pl-10 pr-4 py-2 bg-gray-900 border border-gray-700 rounded-lg text-sm text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition placeholder-gray-500">
+            </div>
+
+            <!-- Filter Pills -->
+            <div class="flex items-center gap-2 overflow-x-auto pb-2 md:pb-0 scrollbar-none text-xs">
+                <button onclick="setCategoryFilter('all')" id="btn-cat-all" class="cat-btn active px-3 py-2 rounded-lg bg-blue-600 text-white font-medium whitespace-nowrap transition">전체</button>
+                <button onclick="setCategoryFilter('상장')" id="btn-cat-public" class="cat-btn px-3 py-2 rounded-lg bg-gray-800 hover:bg-gray-700 text-gray-300 font-medium whitespace-nowrap transition">상장 기업</button>
+                <button onclick="setCategoryFilter('비상장')" id="btn-cat-private" class="cat-btn px-3 py-2 rounded-lg bg-gray-800 hover:bg-gray-700 text-gray-300 font-medium whitespace-nowrap transition">비상장 기업</button>
+                <button onclick="setCategoryFilter('생성형 AI')" id="btn-cat-genai" class="cat-btn px-3 py-2 rounded-lg bg-gray-800 hover:bg-gray-700 text-gray-300 font-medium whitespace-nowrap transition">생성형 AI</button>
+                <button onclick="setCategoryFilter('반도체/인프라')" id="btn-cat-infra" class="cat-btn px-3 py-2 rounded-lg bg-gray-800 hover:bg-gray-700 text-gray-300 font-medium whitespace-nowrap transition">반도체 & 클라우드</button>
+            </div>
+
+            <!-- View Switcher -->
+            <div class="flex items-center bg-gray-900 p-1 rounded-lg border border-gray-800 self-end md:self-auto shrink-0">
+                <button onclick="setViewMode('grid')" id="view-grid-btn" class="p-1.5 px-3 rounded-md text-xs font-medium text-white bg-blue-600 flex items-center gap-1.5 transition">
+                    <i class="fa-solid fa-grip"></i> 카드
+                </button>
+                <button onclick="setViewMode('table')" id="view-table-btn" class="p-1.5 px-3 rounded-md text-xs font-medium text-gray-400 hover:text-white flex items-center gap-1.5 transition">
+                    <i class="fa-solid fa-list"></i> 테이블
+                </button>
+                <button onclick="setViewMode('chart')" id="view-chart-btn" class="p-1.5 px-3 rounded-md text-xs font-medium text-gray-400 hover:text-white flex items-center gap-1.5 transition">
+                    <i class="fa-solid fa-chart-column"></i> 차트
+                </button>
+            </div>
+        </section>
+
+        <!-- Company Cards View Container -->
+        <section id="cardsContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Dynamically Rendered Cards -->
+        </section>
+
+        <!-- Company Table View Container (Hidden by default) -->
+        <section id="tableContainer" class="hidden glass-panel rounded-xl overflow-hidden border border-gray-800">
+            <div class="overflow-x-auto">
+                <table class="w-full text-left text-sm text-gray-300">
+                    <thead class="bg-gray-900/90 text-xs uppercase text-gray-400 border-b border-gray-800">
+                        <tr>
+                            <th class="px-4 py-3.5 text-center">순위</th>
+                            <th class="px-4 py-3.5">기업명</th>
+                            <th class="px-4 py-3.5">구분</th>
+                            <th class="px-4 py-3.5">산업 분야</th>
+                            <th class="px-4 py-3.5 text-right">기업가치(추정)</th>
+                            <th class="px-4 py-3.5">주요 근거 수치</th>
+                            <th class="px-4 py-3.5 text-center">상세</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody" class="divide-y divide-gray-800">
+                        <!-- Dynamically Rendered Rows -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Chart Analytics Container (Hidden by default) -->
+        <section id="chartContainer" class="hidden glass-panel rounded-2xl p-6 sm:p-8 border border-gray-800">
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
+                <div>
+                    <h3 class="text-xl font-bold text-white flex items-center gap-2">
+                        <i class="fa-solid fa-chart-bar text-blue-400"></i> 기업가치 비교 (조 원 단위)
+                    </h3>
+                    <p class="text-xs text-gray-400 mt-1">상장기업은 시가총액, 비상장기업은 최근 투자 라운드 추정 가치를 반영했습니다.</p>
+                </div>
+                <div class="flex items-center gap-4 text-xs">
+                    <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-blue-500 inline-block"></span> 상장 기업</span>
+                    <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-purple-500 inline-block"></span> 비상장 기업</span>
+                </div>
+            </div>
+            <div class="h-96 w-full relative">
+                <canvas id="valuationChart"></canvas>
+            </div>
+        </section>
+
+        <!-- Key Insights Section (핵심 인사이트) -->
+        <section class="mt-12">
+            <div class="flex items-center gap-2 mb-6">
+                <div class="w-2 h-6 bg-blue-500 rounded-full"></div>
+                <h3 class="text-xl font-bold text-white">핵심 인사이트 (Key Insights)</h3>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="glass-panel p-6 rounded-xl border border-gray-800/80 hover:border-blue-500/40 transition">
+                    <div class="w-10 h-10 rounded-lg bg-blue-500/10 text-blue-400 flex items-center justify-center text-lg mb-4">
+                        <i class="fa-solid fa-network-wired"></i>
+                    </div>
+                    <h4 class="text-base font-semibold text-white mb-2">인프라 지배력이 가치를 결정</h4>
+                    <p class="text-sm text-gray-400 leading-relaxed">
+                        AI 기업 가치는 단순한 소프트웨어 개발력을 넘어, 반도체 및 클라우드 같은 AI 가치 사슬의 중심 인프라를 장악한 기업이 압도적인 비중을 점유하고 있습니다.
+                    </p>
+                </div>
+
+                <div class="glass-panel p-6 rounded-xl border border-gray-800/80 hover:border-indigo-500/40 transition">
+                    <div class="w-10 h-10 rounded-lg bg-indigo-500/10 text-indigo-400 flex items-center justify-center text-lg mb-4">
+                        <i class="fa-solid fa-microchip"></i>
+                    </div>
+                    <h4 class="text-base font-semibold text-white mb-2">빅테크 인프라 기업의 독주</h4>
+                    <p class="text-sm text-gray-400 leading-relaxed">
+                        엔비디아, 마이크로소프트, 알파벳, 아마존 등 거대 인프라와 자본력을 갖춘 상장 기업들이 1,000조 원 이상의 대규모 기업가치로 시장을 견인하고 있습니다.
+                    </p>
+                </div>
+
+                <div class="glass-panel p-6 rounded-xl border border-gray-800/80 hover:border-purple-500/40 transition">
+                    <div class="w-10 h-10 rounded-lg bg-purple-500/10 text-purple-400 flex items-center justify-center text-lg mb-4">
+                        <i class="fa-solid fa-bolt"></i>
+                    </div>
+                    <h4 class="text-base font-semibold text-white mb-2">비상장 AI 스타트업의 변동성</h4>
+                    <p class="text-sm text-gray-400 leading-relaxed">
+                        오픈AI, 앤트로픽, xAI 등 차세대 생성형 AI 비상장 기업들은 독보적인 기술력으로 고평가를 받고 있으나, 투자 환경 및 수익화에 따른 변동성이 큽니다.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Summary & Conclusion Banner -->
+        <section class="glass-panel p-6 sm:p-8 rounded-2xl border border-gray-800 bg-gradient-to-br from-gray-900 via-gray-900 to-blue-950/30">
+            <h3 class="text-lg font-bold text-white mb-3 flex items-center gap-2">
+                <i class="fa-solid fa-flag-checkered text-blue-400"></i> 요약 및 총평
+            </h3>
+            <p class="text-sm text-gray-300 leading-relaxed">
+                AI 산업은 단기 유행을 넘어 **장기 구조적 성장 산업**으로 확장되었습니다. 기업의 가치는 단순한 AI 기술 보유 여부가 아니라, **"얼마나 많은 산업과 서비스에 AI를 실제로 연결하고 생태계를 주도하는가"**에 의해 결정됩니다. 본 순위는 2026년 1월 시점의 시장 추정치 기준이며, 빠른 기술 발전에 따라 지속적으로 재편될 수 있습니다.
+            </p>
+        </section>
+    </main>
+
+    <!-- Modal for Company Detail -->
+    <div id="companyModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm hidden">
+        <div class="glass-panel max-w-lg w-full rounded-2xl border border-gray-700 p-6 shadow-2xl relative animate-in fade-in zoom-in duration-200">
+            <button onclick="closeCompanyModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white text-lg w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            
+            <div id="modalContent">
+                <!-- Modal Dynamic Content Injection -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for Methodology -->
+    <div id="methodologyModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm hidden">
+        <div class="glass-panel max-w-xl w-full rounded-2xl border border-gray-700 p-6 sm:p-8 shadow-2xl relative">
+            <button onclick="closeMethodologyModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white text-lg w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            
+            <div class="flex items-center gap-3 mb-5">
+                <div class="w-10 h-10 rounded-xl bg-blue-600/20 text-blue-400 flex items-center justify-center text-lg">
+                    <i class="fa-solid fa-sliders"></i>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold text-white">순위 산정 기준 (Methodology)</h3>
+                    <p class="text-xs text-gray-400">AI 기술 지배력 및 시장 영향력 종합 산정</p>
+                </div>
+            </div>
+
+            <div class="space-y-4 text-sm text-gray-300">
+                <div class="p-3.5 rounded-xl bg-gray-900/80 border border-gray-800">
+                    <h4 class="font-semibold text-white text-xs uppercase tracking-wider text-blue-400 mb-1">1. 기업가치</h4>
+                    <p class="text-xs text-gray-300">
+                        • <strong>상장 기업:</strong> 시가총액(Market Capitalization)<br>
+                        • <strong>비상장 기업:</strong> 최근 투자 라운드 기준 기업가치(Post-money Valuation)
+                    </p>
+                </div>
+
+                <div class="p-3.5 rounded-xl bg-gray-900/80 border border-gray-800">
+                    <h4 class="font-semibold text-white text-xs uppercase tracking-wider text-blue-400 mb-1">2. AI 비중</h4>
+                    <p class="text-xs text-gray-300">AI 기술이 단순 시도를 넘어 매출과 미래 성장의 핵심 동력인 기업을 선별</p>
+                </div>
+
+                <div class="p-3.5 rounded-xl bg-gray-900/80 border border-gray-800">
+                    <h4 class="font-semibold text-white text-xs uppercase tracking-wider text-blue-400 mb-1">3. AI 인프라·모델 지배력</h4>
+                    <p class="text-xs text-gray-300">AI 학습·추론 인프라 공급 여부 및 독자 파운데이션 모델 경쟁력</p>
+                </div>
+
+                <div class="p-3.5 rounded-xl bg-gray-900/80 border border-gray-800">
+                    <h4 class="font-semibold text-white text-xs uppercase tracking-wider text-blue-400 mb-1">4. 시장 영향력</h4>
+                    <p class="text-xs text-gray-300">실제 산업 및 기업 도입 사례와 오픈소스/클라우드 생태계 파급력</p>
+                </div>
+            </div>
+
+            <p class="mt-5 text-xs text-gray-500 italic text-center">
+                ※ 모든 금액은 공개 자료 기반 추정치(2026년 1월 기준)이며 시장 상황에 따라 변동될 수 있습니다.
+            </p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="mt-16 border-t border-gray-800/80 text-center text-xs text-gray-500 py-8">
+        <div class="max-w-7xl mx-auto px-4">
+            <p class="font-medium text-gray-400 mb-1">AI 기업 가치 TOP 10 보고서 · Knowledge-kr</p>
+            <p>작성자: <span class="text-gray-300">sungbin</span> | 데이터 작성 기준일: 2026년 1월</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript Data & Logic -->
+    <script>
+        // Company Dataset from Report
+        const companiesData = [
+            {
+                rank: 1,
+                name: "엔비디아 (NVIDIA)",
+                nameEn: "NVIDIA Corporation",
+                valuationNum: 3000,
+                valuationDisplay: "약 3,000조 원",
+                valuationLabel: "시가총액",
+                type: "상장",
+                country: "미국",
+                flag: "🇺🇸",
+                industry: "AI 반도체",
+                badgeColor: "bg-green-500/10 text-green-400 border-green-500/30",
+                evidence: [
+                    "데이터센터·AI 매출 비중 급증",
+                    "AI 학습·추론용 GPU 시장 압도적 점유"
+                ],
+                reason: "생성형 AI 인프라의 핵심 병목을 장악한 기업으로, 글로벌 AI 생태계에서 대체가 어려운 위치를 차지하고 있습니다.",
+                icon: "fa-microchip"
+            },
+            {
+                rank: 2,
+                name: "마이크로소프트 (Microsoft)",
+                nameEn: "Microsoft",
+                valuationNum: 4000,
+                valuationDisplay: "약 4,000조 원",
+                valuationLabel: "시가총액",
+                type: "상장",
+                country: "미국",
+                flag: "🇺🇸",
+                industry: "AI 플랫폼·클라우드",
+                badgeColor: "bg-blue-500/10 text-blue-400 border-blue-500/30",
+                evidence: [
+                    "Azure AI와 Copilot의 전사적 확산",
+                    "OpenAI와의 전략적 파트너십"
+                ],
+                reason: "AI를 클라우드와 업무 생산성 전반에 통합하며 가장 안정적인 AI 플랫폼 구조를 구축했습니다.",
+                icon: "fa-cloud"
+            },
+            {
+                rank: 3,
+                name: "오픈AI (OpenAI)",
+                nameEn: "OpenAI",
+                valuationNum: 135, // Avg of 120-150
+                valuationDisplay: "약 120~150조 원",
+                valuationLabel: "최근 투자 기준 추정",
+                type: "비상장",
+                country: "미국",
+                flag: "🇺🇸",
+                industry: "생성형 AI",
+                badgeColor: "bg-purple-500/10 text-purple-400 border-purple-500/30",
+                evidence: [
+                    "ChatGPT의 글로벌 확산",
+                    "GPT 계열 모델의 상업적 활용"
+                ],
+                reason: "생성형 AI 대중화를 이끈 상징적 기업으로, AI 서비스 시장의 방향성을 결정짓고 있습니다.",
+                icon: "fa-robot"
+            },
+            {
+                rank: 4,
+                name: "알파벳 (Alphabet / 구글)",
+                nameEn: "Alphabet Inc.",
+                valuationNum: 2300,
+                valuationDisplay: "약 2,300조 원",
+                valuationLabel: "시가총액",
+                type: "상장",
+                country: "미국",
+                flag: "🇺🇸",
+                industry: "AI 플랫폼·검색",
+                badgeColor: "bg-red-500/10 text-red-400 border-red-500/30",
+                evidence: [
+                    "Gemini 모델과 DeepMind 연구 성과",
+                    "검색·광고·클라우드 전반 AI 적용"
+                ],
+                reason: "기초 연구부터 대규모 상용화까지 가능한 AI 풀스택 역량을 보유하고 있습니다.",
+                icon: "fa-magnifying-glass"
+            },
+            {
+                rank: 5,
+                name: "아마존 (Amazon)",
+                nameEn: "Amazon.com",
+                valuationNum: 2000,
+                valuationDisplay: "약 2,000조 원",
+                valuationLabel: "시가총액",
+                type: "상장",
+                country: "미국",
+                flag: "🇺🇸",
+                industry: "AI 클라우드·전자상거래",
+                badgeColor: "bg-amber-500/10 text-amber-400 border-amber-500/30",
+                evidence: [
+                    "AWS 기반 AI 인프라 매출 확대",
+                    "자체 파운데이션 모델 운영"
+                ],
+                reason: "글로벌 AI 클라우드 인프라의 핵심 사업자로 기업용 AI 도입의 중심에 있습니다.",
+                icon: "fa-server"
+            },
+            {
+                rank: 6,
+                name: "메타 (Meta)",
+                nameEn: "Meta Platforms",
+                valuationNum: 1600,
+                valuationDisplay: "약 1,600조 원",
+                valuationLabel: "시가총액",
+                type: "상장",
+                country: "미국",
+                flag: "🇺🇸",
+                industry: "AI 플랫폼·소셜",
+                badgeColor: "bg-indigo-500/10 text-indigo-400 border-indigo-500/30",
+                evidence: [
+                    "LLaMA 오픈소스 모델 생태계 확장",
+                    "추천·광고 시스템 전반 AI 적용"
+                ],
+                reason: "오픈소스 AI 전략을 통해 글로벌 AI 개발자 생태계에 큰 영향을 미치고 있습니다.",
+                icon: "fa-share-nodes"
+            },
+            {
+                rank: 7,
+                name: "앤트로픽 (Anthropic)",
+                nameEn: "Anthropic",
+                valuationNum: 90, // Avg of 80-100
+                valuationDisplay: "약 80~100조 원",
+                valuationLabel: "최근 투자 기준 추정",
+                type: "비상장",
+                country: "미국",
+                flag: "🇺🇸",
+                industry: "생성형 AI",
+                badgeColor: "bg-teal-500/10 text-teal-400 border-teal-500/30",
+                evidence: [
+                    "Claude 모델의 기업용 도입 확대",
+                    "안전성과 신뢰성 중심 설계"
+                ],
+                reason: "기업 환경에 특화된 생성형 AI로 빠르게 존재감을 확대하고 있습니다.",
+                icon: "fa-shield-halved"
+            },
+            {
+                rank: 8,
+                name: "테슬라 (Tesla)",
+                nameEn: "Tesla",
+                valuationNum: 1200,
+                valuationDisplay: "약 1,200조 원 (AI 반영)",
+                valuationLabel: "시가총액 중 AI 비중 반영",
+                type: "상장",
+                country: "미국",
+                flag: "🇺🇸",
+                industry: "자율주행·로보틱스",
+                badgeColor: "bg-rose-500/10 text-rose-400 border-rose-500/30",
+                evidence: [
+                    "FSD 자율주행 데이터 축적",
+                    "휴머노이드 로봇 개발"
+                ],
+                reason: "AI를 실제 물리 세계에 적용하는 대표적인 Physical AI 기업입니다.",
+                icon: "fa-car"
+            },
+            {
+                rank: 9,
+                name: "IBM",
+                nameEn: "IBM",
+                valuationNum: 250,
+                valuationDisplay: "약 250조 원",
+                valuationLabel: "시가총액",
+                type: "상장",
+                country: "미국",
+                flag: "🇺🇸",
+                industry: "기업용 AI",
+                badgeColor: "bg-sky-500/10 text-sky-400 border-sky-500/30",
+                evidence: [
+                    "Watsonx 중심의 B2B AI 솔루션",
+                    "금융·제조·공공 부문 적용"
+                ],
+                reason: "엔터프라이즈 AI 분야에서 안정성과 신뢰를 기반으로 경쟁력을 유지하고 있습니다.",
+                icon: "fa-building-columns"
+            },
+            {
+                rank: 10,
+                name: "xAI",
+                nameEn: "xAI",
+                valuationNum: 35, // Avg of 30-40
+                valuationDisplay: "약 30~40조 원",
+                valuationLabel: "최근 투자 기준 추정",
+                type: "비상장",
+                country: "미국",
+                flag: "🇺🇸",
+                industry: "생성형 AI",
+                badgeColor: "bg-cyan-500/10 text-cyan-400 border-cyan-500/30",
+                evidence: [
+                    "Grok 모델 공개",
+                    "대규모 컴퓨팅 인프라 투자"
+                ],
+                reason: "빠른 성장 속도로 주목받는 차세대 생성형 AI 기업입니다.",
+                icon: "fa-bolt"
+            }
+        ];
+
+        let currentCategory = 'all';
+        let currentView = 'grid';
+        let chartInstance = null;
+
+        // On Page Load
+        document.addEventListener("DOMContentLoaded", () => {
+            renderCards();
+            renderTable();
+            initChart();
+        });
+
+        // Filter Function
+        function filterAndRender() {
+            const searchQuery = document.getElementById("searchInput").value.toLowerCase().trim();
+            
+            const filtered = companiesData.filter(item => {
+                const matchesSearch = item.name.toLowerCase().includes(searchQuery) || 
+                                      item.nameEn.toLowerCase().includes(searchQuery) ||
+                                      item.industry.toLowerCase().includes(searchQuery) ||
+                                      item.evidence.some(e => e.toLowerCase().includes(searchQuery));
+                
+                let matchesCategory = true;
+                if (currentCategory === '상장') matchesCategory = item.type === '상장';
+                else if (currentCategory === '비상장') matchesCategory = item.type === '비상장';
+                else if (currentCategory === '생성형 AI') matchesCategory = item.industry.includes('생성형');
+                else if (currentCategory === '반도체/인프라') matchesCategory = item.industry.includes('반도체') || item.industry.includes('클라우드');
+
+                return matchesSearch && matchesCategory;
+            });
+
+            renderCards(filtered);
+            renderTable(filtered);
+            updateChartData(filtered);
+        }
+
+        // Category Filter Changer
+        function setCategoryFilter(category) {
+            currentCategory = category;
+            
+            // Update UI Button Styles
+            document.querySelectorAll('.cat-btn').forEach(btn => {
+                btn.classList.remove('bg-blue-600', 'text-white');
+                btn.classList.add('bg-gray-800', 'text-gray-300');
+            });
+
+            const activeBtnMap = {
+                'all': 'btn-cat-all',
+                '상장': 'btn-cat-public',
+                '비상장': 'btn-cat-private',
+                '생성형 AI': 'btn-cat-genai',
+                '반도체/인프라': 'btn-cat-infra'
+            };
+
+            const activeBtn = document.getElementById(activeBtnMap[category]);
+            if (activeBtn) {
+                activeBtn.classList.remove('bg-gray-800', 'text-gray-300');
+                activeBtn.classList.add('bg-blue-600', 'text-white');
+            }
+
+            filterAndRender();
+        }
+
+        // View Mode Toggle (Grid, Table, Chart)
+        function setViewMode(mode) {
+            currentView = mode;
+            const cardsContainer = document.getElementById('cardsContainer');
+            const tableContainer = document.getElementById('tableContainer');
+            const chartContainer = document.getElementById('chartContainer');
+
+            const btnGrid = document.getElementById('view-grid-btn');
+            const btnTable = document.getElementById('view-table-btn');
+            const btnChart = document.getElementById('view-chart-btn');
+
+            [btnGrid, btnTable, btnChart].forEach(btn => {
+                btn.classList.remove('bg-blue-600', 'text-white');
+                btn.classList.add('text-gray-400');
+            });
+
+            cardsContainer.classList.add('hidden');
+            tableContainer.classList.add('hidden');
+            chartContainer.classList.add('hidden');
+
+            if (mode === 'grid') {
+                cardsContainer.classList.remove('hidden');
+                btnGrid.classList.add('bg-blue-600', 'text-white');
+                btnGrid.classList.remove('text-gray-400');
+            } else if (mode === 'table') {
+                tableContainer.classList.remove('hidden');
+                btnTable.classList.add('bg-blue-600', 'text-white');
+                btnTable.classList.remove('text-gray-400');
+            } else if (mode === 'chart') {
+                chartContainer.classList.remove('hidden');
+                btnChart.classList.add('bg-blue-600', 'text-white');
+                btnChart.classList.remove('text-gray-400');
+                if (chartInstance) chartInstance.update();
+            }
+        }
+
+        // Render Cards View
+        function renderCards(data = companiesData) {
+            const container = document.getElementById('cardsContainer');
+            if (data.length === 0) {
+                container.innerHTML = `
+                    <div class="col-span-full py-12 text-center text-gray-500">
+                        <i class="fa-solid fa-folder-open text-4xl mb-3 block"></i>
+                        조건에 일치하는 AI 기업 검색 결과가 없습니다.
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = data.map(item => `
+                <div class="glass-panel rounded-2xl p-6 border border-gray-800 hover:border-gray-700 transition duration-300 flex flex-col justify-between group cursor-pointer glow-effect relative overflow-hidden" onclick="openCompanyModal(${item.rank})">
+                    <div class="absolute top-0 right-0 w-24 h-24 bg-blue-500/5 rounded-bl-full pointer-events-none"></div>
+
+                    <div>
+                        <!-- Card Header: Rank & Badge -->
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center gap-2">
+                                <span class="w-8 h-8 rounded-lg ${item.rank <= 3 ? 'bg-gradient-to-tr from-blue-600 to-indigo-500 text-white font-extrabold' : 'bg-gray-800 text-gray-300'} flex items-center justify-center text-sm shadow">
+                                    #${item.rank}
+                                </span>
+                                <span class="px-2.5 py-0.5 rounded-full text-xs font-semibold border ${item.type === '상장' ? 'bg-blue-900/30 text-blue-300 border-blue-700/40' : 'bg-purple-900/30 text-purple-300 border-purple-700/40'}">
+                                    ${item.type}
+                                </span>
+                            </div>
+                            <span class="text-xs text-gray-400 flex items-center gap-1">
+                                <span>${item.flag}</span> ${item.country}
+                            </span>
+                        </div>
+
+                        <!-- Company Title -->
+                        <div class="mb-4">
+                            <h3 class="text-lg font-bold text-white group-hover:text-blue-400 transition flex items-center gap-2">
+                                <span>${item.name}</span>
+                            </h3>
+                            <p class="text-xs text-gray-400 font-mono mt-0.5">${item.industry}</p>
+                        </div>
+
+                        <!-- Valuation -->
+                        <div class="bg-gray-900/70 rounded-xl p-3 mb-4 border border-gray-800">
+                            <span class="text-xs text-gray-400 block">${item.valuationLabel}</span>
+                            <span class="text-xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-300">
+                                ${item.valuationDisplay}
+                            </span>
+                        </div>
+
+                        <!-- Evidence Bullets -->
+                        <div class="space-y-1.5 mb-4">
+                            <span class="text-xs font-semibold text-gray-400 uppercase tracking-wider block">AI 주요 근거</span>
+                            ${item.evidence.map(ev => `
+                                <div class="flex items-start gap-2 text-xs text-gray-300">
+                                    <i class="fa-solid fa-check text-blue-400 text-[10px] mt-1 shrink-0"></i>
+                                    <span>${ev}</span>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+
+                    <!-- Card Footer -->
+                    <div class="pt-3 border-t border-gray-800/80 flex items-center justify-between text-xs text-gray-400 group-hover:text-blue-300 transition">
+                        <span>순위 이유 보기</span>
+                        <i class="fa-solid fa-arrow-right text-xs transition-transform group-hover:translate-x-1"></i>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Render Table View
+        function renderTable(data = companiesData) {
+            const tableBody = document.getElementById('tableBody');
+            if (data.length === 0) {
+                tableBody.innerHTML = `
+                    <tr>
+                        <td colspan="7" class="text-center py-8 text-gray-500">검색 결과가 없습니다.</td>
+                    </tr>
+                `;
+                return;
+            }
+
+            tableBody.innerHTML = data.map(item => `
+                <tr class="hover:bg-gray-800/50 transition cursor-pointer" onclick="openCompanyModal(${item.rank})">
+                    <td class="px-4 py-3.5 text-center font-bold text-white">#${item.rank}</td>
+                    <td class="px-4 py-3.5 font-semibold text-white">
+                        <div>${item.name}</div>
+                        <div class="text-xs text-gray-400 font-mono font-normal">${item.nameEn}</div>
+                    </td>
+                    <td class="px-4 py-3.5">
+                        <span class="px-2 py-0.5 rounded text-xs ${item.type === '상장' ? 'bg-blue-900/40 text-blue-300' : 'bg-purple-900/40 text-purple-300'}">
+                            ${item.type}
+                        </span>
+                    </td>
+                    <td class="px-4 py-3.5 text-xs text-gray-300">${item.industry}</td>
+                    <td class="px-4 py-3.5 text-right font-bold text-blue-400">${item.valuationDisplay}</td>
+                    <td class="px-4 py-3.5 text-xs text-gray-300">
+                        <ul class="list-disc list-inside space-y-0.5">
+                            ${item.evidence.map(e => `<li>${e}</li>`).join('')}
+                        </ul>
+                    </td>
+                    <td class="px-4 py-3.5 text-center text-gray-400">
+                        <button class="p-1.5 rounded hover:bg-gray-700 text-blue-400">
+                            <i class="fa-solid fa-circle-chevron-right"></i>
+                        </button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        // Initialize Chart
+        function initChart() {
+            const ctx = document.getElementById('valuationChart').getContext('2d');
+            
+            const labels = companiesData.map(c => c.name.split(' ')[0]);
+            const values = companiesData.map(c => c.valuationNum);
+            const backgroundColors = companiesData.map(c => c.type === '상장' ? 'rgba(59, 130, 246, 0.75)' : 'rgba(168, 85, 247, 0.75)');
+            const borderColors = companiesData.map(c => c.type === '상장' ? '#3b82f6' : '#a855f7');
+
+            chartInstance = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: '기업 가치 (조 원)',
+                        data: values,
+                        backgroundColor: backgroundColors,
+                        borderColor: borderColors,
+                        borderWidth: 1.5,
+                        borderRadius: 6,
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    const item = companiesData[context.dataIndex];
+                                    return ` ${item.name}: ${item.valuationDisplay} (${item.type})`;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            grid: { color: 'rgba(255, 255, 255, 0.05)' },
+                            ticks: { color: '#9ca3af', font: { family: 'Noto Sans KR' } }
+                        },
+                        y: {
+                            grid: { color: 'rgba(255, 255, 255, 0.05)' },
+                            ticks: { 
+                                color: '#9ca3af',
+                                font: { family: 'Noto Sans KR' },
+                                callback: function(value) { return value + '조'; }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Update Chart Filtered Data
+        function updateChartData(filteredData) {
+            if (!chartInstance) return;
+            chartInstance.data.labels = filteredData.map(c => c.name.split(' ')[0]);
+            chartInstance.data.datasets[0].data = filteredData.map(c => c.valuationNum);
+            chartInstance.data.datasets[0].backgroundColor = filteredData.map(c => c.type === '상장' ? 'rgba(59, 130, 246, 0.75)' : 'rgba(168, 85, 247, 0.75)');
+            chartInstance.data.datasets[0].borderColor = filteredData.map(c => c.type === '상장' ? '#3b82f6' : '#a855f7');
+            chartInstance.update();
+        }
+
+        // Modal Open logic for Companies
+        function openCompanyModal(rank) {
+            const company = companiesData.find(c => c.rank === rank);
+            if (!company) return;
+
+            const modalContent = document.getElementById('modalContent');
+            modalContent.innerHTML = `
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-500 text-white font-extrabold text-lg flex items-center justify-center shadow">
+                        #${company.rank}
+                    </div>
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <h3 class="text-xl font-bold text-white">${company.name}</h3>
+                            <span class="text-xs px-2 py-0.5 rounded border ${company.type === '상장' ? 'bg-blue-900/40 text-blue-300 border-blue-700/50' : 'bg-purple-900/40 text-purple-300 border-purple-700/50'}">
+                                ${company.type}
+                            </span>
+                        </div>
+                        <p class="text-xs text-gray-400 font-mono mt-0.5">${company.industry} · ${company.flag} ${company.country}</p>
+                    </div>
+                </div>
+
+                <div class="bg-gray-900/80 rounded-xl p-4 mb-5 border border-gray-800">
+                    <span class="text-xs text-gray-400 block">${company.valuationLabel}</span>
+                    <span class="text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-300">
+                        ${company.valuationDisplay}
+                    </span>
+                </div>
+
+                <div class="space-y-4 text-sm">
+                    <div>
+                        <h4 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2 flex items-center gap-1.5">
+                            <i class="fa-solid fa-chart-pie text-blue-400"></i> AI 근거 수치
+                        </h4>
+                        <div class="space-y-1.5 bg-gray-900/40 p-3 rounded-lg border border-gray-800/80">
+                            ${company.evidence.map(e => `
+                                <div class="flex items-start gap-2 text-xs text-gray-200">
+                                    <i class="fa-solid fa-circle-check text-blue-400 text-[11px] mt-0.5 shrink-0"></i>
+                                    <span>${e}</span>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+
+                    <div>
+                        <h4 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2 flex items-center gap-1.5">
+                            <i class="fa-solid fa-award text-amber-400"></i> 순위 선정 이유
+                        </h4>
+                        <p class="text-xs text-gray-300 leading-relaxed bg-blue-950/20 p-3.5 rounded-lg border border-blue-900/30">
+                            ${company.reason}
+                        </p>
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('companyModal').classList.remove('hidden');
+        }
+
+        function closeCompanyModal() {
+            document.getElementById('companyModal').classList.add('hidden');
+        }
+
+        // Modal Open logic for Methodology
+        function openMethodologyModal() {
+            document.getElementById('methodologyModal').classList.remove('hidden');
+        }
+
+        function closeMethodologyModal() {
+            document.getElementById('methodologyModal').classList.add('hidden');
+        }
+
+        // Close Modals on Outer Click
+        window.onclick = function(event) {
+            const companyModal = document.getElementById('companyModal');
+            const methodologyModal = document.getElementById('methodologyModal');
+            if (event.target === companyModal) closeCompanyModal();
+            if (event.target === methodologyModal) closeMethodologyModal();
+        };
+    </script>
+</body>
+</html>
