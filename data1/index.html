@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>2025년 자전거 가해운전자 교통사고 심층 분석 보고서</title>
+    <title>부산 지역 대학 경영계열 학과 시계열 구조 변화 분석</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -13,622 +13,733 @@
                 extend: {
                     colors: {
                         brand: {
-                            50: '#f0f9ff',
-                            100: '#e0f2fe',
+                            50: '#f0f7ff',
+                            100: '#e0effe',
                             500: '#0284c7',
                             600: '#0369a1',
-                            700: '#075985',
-                        },
-                        danger: {
-                            500: '#ef4444',
-                            600: '#dc2626',
-                        },
-                        warning: {
-                            50: '#f59e0b',
+                            700: '#0f4c81',
+                            900: '#0c2a4a',
                         }
                     }
                 }
             }
         }
     </script>
-    <!-- Chart.js -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts (Noto Sans KR) -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
         body {
-            font-family: 'Pretendard', sans-serif;
+            font-family: 'Noto Sans KR', sans-serif;
         }
-        .chart-container {
-            position: relative;
-            height: 320px;
-            width: 100%;
+        .glassmorphism {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .dark .glassmorphism {
+            background: rgba(15, 23, 42, 0.85);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.05);
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 3px;
         }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-800 dark:bg-slate-900 dark:text-slate-100 transition-colors duration-200">
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-900 dark:text-slate-100 antialiased transition-colors duration-300">
 
-    <!-- Navigation Header -->
-    <header class="sticky top-0 z-50 backdrop-blur-md bg-white/80 dark:bg-slate-900/80 border-b border-slate-200 dark:border-slate-800">
+    <!-- Header / Navigation -->
+    <header class="fixed top-0 left-0 right-0 z-50 glassmorphism border-b border-slate-200 dark:border-slate-800 transition-colors">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
             <div class="flex items-center space-x-3">
-                <!-- Home Button (Left Side) -->
-                <a href="../index.html" class="p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition flex items-center space-x-1.5 text-xs font-semibold" title="홈으로 이동">
-                    <i data-lucide="home" class="w-4 h-4"></i>
-                    <span class="hidden sm:inline">홈</span>
+                <!-- Home Link Button -->
+                <a href="../index.html" class="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-brand-50 hover:text-brand-600 dark:hover:bg-slate-700 dark:hover:text-brand-400 transition-colors border border-slate-200 dark:border-slate-700 flex items-center justify-center group" title="메인 홈으로 이동">
+                    <i class="fa-solid fa-house text-sm group-hover:scale-110 transition-transform"></i>
                 </a>
-                
-                <div class="h-4 w-px bg-slate-200 dark:bg-slate-700"></div>
-
-                <div class="flex items-center space-x-2">
-                    <div class="p-1.5 bg-brand-500 text-white rounded-lg shadow-md shadow-brand-500/20">
-                        <i data-lucide="bike" class="w-5 h-5"></i>
-                    </div>
-                    <span class="font-bold text-base sm:text-lg tracking-tight hidden sm:inline">2025 교통안전 데이터 포트폴리오</span>
-                    <span class="font-bold text-base tracking-tight sm:hidden">자전거 사고분석</span>
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-700 to-blue-500 flex items-center justify-center text-white font-bold text-lg shadow-md shadow-brand-500/20">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                </div>
+                <div>
+                    <span class="text-xs font-semibold tracking-wider text-brand-600 dark:text-brand-500 uppercase block">Higher Education Research</span>
+                    <h1 class="text-base font-bold leading-none text-slate-900 dark:text-white">부산 경영계열 시계열 분석</h1>
                 </div>
             </div>
-            
+
+            <!-- Nav Links -->
             <nav class="hidden md:flex items-center space-x-6 text-sm font-medium">
-                <a href="#overview" class="hover:text-brand-500 transition-colors">총괄 현황</a>
-                <a href="#type-analysis" class="hover:text-brand-500 transition-colors">사고유형 분석</a>
-                <a href="#time-analysis" class="hover:text-brand-500 transition-colors">시간대별 패턴</a>
-                <a href="#matrix" class="hover:text-brand-500 transition-colors">고위험 특성</a>
-                <a href="#proposals" class="hover:text-brand-500 transition-colors">정책 제언</a>
+                <a href="#overview" class="hover:text-brand-600 dark:hover:text-brand-500 transition-colors">연구 개요</a>
+                <a href="#timeline" class="hover:text-brand-600 dark:hover:text-brand-500 transition-colors">시점별 구조변화</a>
+                <a href="#specialization" class="hover:text-brand-600 dark:hover:text-brand-500 transition-colors">지역산업 특성화</a>
+                <a href="#university-list" class="hover:text-brand-600 dark:hover:text-brand-500 transition-colors">대학별 최종 현황</a>
+                <a href="#conclusion" class="hover:text-brand-600 dark:hover:text-brand-500 transition-colors">결론 및 시사점</a>
             </nav>
 
+            <!-- Actions -->
             <div class="flex items-center space-x-3">
-                <button id="themeToggle" class="p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition" aria-label="테마 전환">
-                    <i data-lucide="moon" id="themeIconMoon" class="w-5 h-5 hidden dark:block"></i>
-                    <i data-lucide="sun" id="themeIconSun" class="w-5 h-5 block dark:hidden"></i>
+                <button id="themeToggleBtn" class="p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors" title="테마 전환">
+                    <i class="fa-solid fa-moon dark:hidden"></i>
+                    <i class="fa-solid fa-sun hidden dark:block"></i>
                 </button>
-                <a href="#proposals" class="px-4 py-2 text-xs font-semibold text-white bg-brand-600 hover:bg-brand-700 rounded-lg shadow-sm transition">
-                    제언 보기
+                <a href="#university-list" class="hidden sm:inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-white bg-brand-600 hover:bg-brand-700 rounded-lg shadow-sm transition-colors">
+                    <i class="fa-solid fa-magnifying-glass mr-2"></i> 학과 검색
                 </a>
             </div>
         </div>
     </header>
 
-    <!-- Main Content Container -->
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-12">
-
-        <!-- Hero Title Section -->
-        <section class="text-center space-y-4 py-6 border-b border-slate-200 dark:border-slate-800">
-            <div class="inline-flex items-center space-x-2 px-3 py-1 bg-brand-50 dark:bg-brand-900/30 text-brand-600 dark:text-brand-400 rounded-full text-xs font-semibold uppercase tracking-wider">
-                <i data-lucide="bar-chart-2" class="w-4 h-4"></i>
-                <span>Data Analysis Report</span>
-            </div>
-            <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white">
-                2025년 자전거 가해운전자 교통사고 심층 분석
-            </h1>
-            <p class="max-w-3xl mx-auto text-slate-600 dark:text-slate-400 text-base sm:text-lg">
-                자전거 통행량 증가에 따른 사고 위험성을 다각도로 분석하고, 사고 발생 패턴과 고위험 요인을 기반으로 실효성 있는 예방 대책을 제시합니다.
-            </p>
-        </section>
-
-        <!-- SECTION 1: OVERVIEW & KPIS -->
-        <section id="overview" class="space-y-6">
-            <div class="flex items-center space-x-2">
-                <i data-lucide="activity" class="w-6 h-6 text-brand-500"></i>
-                <h2 class="text-2xl font-bold tracking-tight">1. 사고 발생 현황 총괄</h2>
-            </div>
-
-            <!-- KPI Grid -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                <!-- KPI 1 -->
-                <div class="p-6 bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700/60 relative overflow-hidden">
-                    <div class="text-xs font-semibold text-slate-500 dark:text-slate-400">전체 사고 건수</div>
-                    <div class="mt-2 flex items-baseline justify-between">
-                        <span class="text-3xl font-extrabold text-slate-900 dark:text-white">5,235</span>
-                        <span class="text-xs font-medium text-slate-500">건</span>
+    <!-- Hero Section -->
+    <section id="overview" class="pt-28 pb-16 md:pt-36 md:pb-24 overflow-hidden relative border-b border-slate-200 dark:border-slate-800">
+        <div class="absolute inset-0 z-0 opacity-30 dark:opacity-20 bg-[radial-gradient(#0284c7_1px,transparent_1px)] [background-size:16px_16px]"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-50 dark:bg-slate-800 border border-brand-100 dark:border-slate-700 text-brand-600 dark:text-brand-400 text-xs font-semibold">
+                        <span class="w-2 h-2 rounded-full bg-brand-500 animate-pulse"></span>
+                        부산 고등교육 시계열 데이터 분석 리포트
                     </div>
-                    <p class="mt-2 text-xs text-slate-500">2025년 가해운전자 기준 총계</p>
-                    <div class="absolute -right-2 -bottom-2 opacity-5 text-brand-600">
-                        <i data-lucide="alert-triangle" class="w-24 h-24"></i>
+                    <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-tight">
+                        지역 산업 생태계와<br class="hidden sm:inline">
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-600 to-blue-500">경영학과의 전략적 궤적</span>
+                    </h2>
+                    <p class="text-slate-600 dark:text-slate-300 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto lg:mx-0">
+                        본 보고서는 부산 지역 고등교육 기관의 경영 계열 학과의 구조적 변화를 정밀 분석하여, 대학들이 지역 산업 및 학령인구 변화에 대응해 온 거버넌스 효율화와 브랜드 리포지셔닝(Repositioning) 전략을 조명합니다.
+                    </p>
+                    
+                    <div class="pt-2 flex flex-wrap gap-4 justify-center lg:justify-start text-sm">
+                        <div class="flex items-center gap-2 bg-white dark:bg-slate-800 px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm">
+                            <i class="fa-solid fa-layer-group text-brand-500"></i>
+                            <span><strong>3단계</strong> 데이터셋 분석</span>
+                        </div>
+                        <div class="flex items-center gap-2 bg-white dark:bg-slate-800 px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm">
+                            <i class="fa-solid fa-building-columns text-blue-500"></i>
+                            <span><strong>14개+</strong> 대상 교육기관</span>
+                        </div>
+                        <div class="flex items-center gap-2 bg-white dark:bg-slate-800 px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm">
+                            <i class="fa-solid fa-arrows-split-up-and-left text-indigo-500"></i>
+                            <span><strong>4대</strong> 학과 상태 트렌드</span>
+                        </div>
                     </div>
                 </div>
 
-                <!-- KPI 2 -->
-                <div class="p-6 bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700/60 relative overflow-hidden">
-                    <div class="text-xs font-semibold text-danger-500">사망자 수</div>
-                    <div class="mt-2 flex items-baseline justify-between">
-                        <span class="text-3xl font-extrabold text-danger-500">85</span>
-                        <span class="text-xs font-medium text-slate-500">명</span>
-                    </div>
-                    <p class="mt-2 text-xs text-slate-500">치사율 <strong>1.62%</strong> 기록</p>
-                    <div class="absolute -right-2 -bottom-2 opacity-5 text-danger-500">
-                        <i data-lucide="skull" class="w-24 h-24"></i>
-                    </div>
-                </div>
-
-                <!-- KPI 3 -->
-                <div class="p-6 bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700/60 relative overflow-hidden">
-                    <div class="text-xs font-semibold text-amber-500">부상자 수</div>
-                    <div class="mt-2 flex items-baseline justify-between">
-                        <span class="text-3xl font-extrabold text-slate-900 dark:text-white">5,655</span>
-                        <span class="text-xs font-medium text-slate-500">명</span>
-                    </div>
-                    <p class="mt-2 text-xs text-amber-600 dark:text-amber-400 font-medium">사고 건수 대비 부상자 수 상회 (1.08명/건)</p>
-                    <div class="absolute -right-2 -bottom-2 opacity-5 text-amber-500">
-                        <i data-lucide="user-x" class="w-24 h-24"></i>
-                    </div>
-                </div>
-
-                <!-- KPI 4 -->
-                <div class="p-6 bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700/60 relative overflow-hidden">
-                    <div class="text-xs font-semibold text-slate-500 dark:text-slate-400">평균 치사율</div>
-                    <div class="mt-2 flex items-baseline justify-between">
-                        <span class="text-3xl font-extrabold text-brand-600 dark:text-brand-400">1.62%</span>
-                        <span class="text-xs font-medium text-slate-500">사망/사고</span>
-                    </div>
-                    <p class="mt-2 text-xs text-slate-500">단독 사고시 최대 10.5% 격상</p>
-                    <div class="absolute -right-2 -bottom-2 opacity-5 text-brand-500">
-                        <i data-lucide="percent" class="w-24 h-24"></i>
+                <div class="lg:col-span-5">
+                    <div class="bg-white dark:bg-slate-800 rounded-2xl p-6 border border-slate-200 dark:border-slate-700 shadow-xl relative">
+                        <div class="absolute -top-3 -right-3 bg-gradient-to-r from-amber-500 to-orange-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-md">
+                            Key Transformation
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
+                            <i class="fa-solid fa-chart-line text-brand-500"></i> 핵심 변화 패러다임
+                        </h3>
+                        <div class="space-y-4">
+                            <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-700/50 border border-slate-100 dark:border-slate-700">
+                                <div class="text-xs text-brand-600 dark:text-brand-400 font-semibold mb-1">시점 1 · 초기</div>
+                                <div class="font-bold text-slate-800 dark:text-slate-100 text-sm">전통적 경영학 중심 & 기초 특성화</div>
+                                <div class="text-xs text-slate-500 dark:text-slate-400 mt-1">보편적 학문 체계에서 세부 영역으로의 외연 확장 세분화</div>
+                            </div>
+                            <div class="flex justify-center text-slate-400 dark:text-slate-500 my-[-6px]">
+                                <i class="fa-solid fa-arrow-down text-xs"></i>
+                            </div>
+                            <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-700/50 border border-slate-100 dark:border-slate-700">
+                                <div class="text-xs text-indigo-600 dark:text-indigo-400 font-semibold mb-1">시점 2 · 중기</div>
+                                <div class="font-bold text-slate-800 dark:text-slate-100 text-sm">글로벌 서비스 & 첨단 데이터 융합</div>
+                                <div class="text-xs text-slate-500 dark:text-slate-400 mt-1">대대적 명칭 변경, 빅데이터 및 글로벌 리브랜딩</div>
+                            </div>
+                            <div class="flex justify-center text-slate-400 dark:text-slate-500 my-[-6px]">
+                                <i class="fa-solid fa-arrow-down text-xs"></i>
+                            </div>
+                            <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-700/50 border border-slate-100 dark:border-slate-700">
+                                <div class="text-xs text-emerald-600 dark:text-emerald-400 font-semibold mb-1">최종 시점 · 현행</div>
+                                <div class="font-bold text-slate-800 dark:text-slate-100 text-sm">전문화된 학학과 통합 & 유연한 거버넌스</div>
+                                <div class="text-xs text-slate-500 dark:text-slate-400 mt-1">자원 집중을 통한 거버넌스 효율화 및 앵커 브랜드 구축</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
+        </div>
+    </section>
 
-            <!-- Insight Box -->
-            <div class="p-4 bg-brand-50/50 dark:bg-brand-950/20 border border-brand-100 dark:border-brand-900/50 rounded-xl flex items-start space-x-3">
-                <i data-lucide="info" class="w-5 h-5 text-brand-600 dark:text-brand-400 shrink-0 mt-0.5"></i>
-                <p class="text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
-                    <strong>주요 특징:</strong> 부상자 수(5,655명)가 사고 건수(5,235건)를 상회하는 지표는 사고 발생 시 운전자 본인뿐만 아니라 보행자나 상대 차량 탑승자 등 <strong>다수의 인명 피해가 동시에 발생</strong>하고 있음을 시사합니다.
+    <!-- Timeline Section -->
+    <section id="timeline" class="py-16 md:py-24 bg-slate-100/60 dark:bg-slate-900/50 border-b border-slate-200 dark:border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-brand-600 dark:text-brand-400 font-bold text-sm uppercase tracking-widest">Temporal Analysis</span>
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white mt-1">시점별 학제 구조 개편 분석</h2>
+                <p class="text-slate-600 dark:text-slate-400 mt-2 text-sm sm:text-base">초기 세분화부터 첨단 기술 융합, 그리고 최종 통합의 단계에 이르기까지 대학들의 전략적 궤적입니다.</p>
+            </div>
+
+            <!-- Tab Buttons -->
+            <div class="flex justify-center mb-10">
+                <div class="inline-flex p-1.5 bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 space-x-1">
+                    <button onclick="switchTimeline('step1')" id="tab-step1" class="timeline-tab px-5 py-2.5 rounded-xl font-bold text-sm transition-all bg-brand-600 text-white shadow-sm">
+                        [시점 1] 초기: 전통 경영 중심
+                    </button>
+                    <button onclick="switchTimeline('step2')" id="tab-step2" class="timeline-tab px-5 py-2.5 rounded-xl font-medium text-sm text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-all">
+                        [시점 2] 중기: 글로벌/데이터
+                    </button>
+                    <button onclick="switchTimeline('step3')" id="tab-step3" class="timeline-tab px-5 py-2.5 rounded-xl font-medium text-sm text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-all">
+                        [최종] 현행: 융합 및 통합
+                    </button>
+                </div>
+            </div>
+
+            <!-- Timeline Content Container -->
+            <div class="relative min-h-[420px]">
+                <!-- Step 1 -->
+                <div id="content-step1" class="timeline-content transition-all duration-300">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
+                        <div class="bg-white dark:bg-slate-800 p-6 sm:p-8 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm flex flex-col justify-between">
+                            <div>
+                                <div class="inline-block px-3 py-1 rounded-md bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300 font-semibold text-xs mb-3">초기 구조 특성</div>
+                                <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">보편적 경영학 및 신규 단위 창설</h3>
+                                <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-4">
+                                    초기 시점의 부산 지역 대학 경영 교육은 전통적인 일반 경영학 체계를 골자로 하면서, 일부 선도 대학을 중심으로 특정 실무 영역으로의 외연 확장이 진행된 과도기적 단계였습니다.
+                                </p>
+                            </div>
+                            <div class="space-y-3 pt-4 border-t border-slate-100 dark:border-slate-700">
+                                <div class="flex items-start gap-3">
+                                    <div class="w-6 h-6 rounded-full bg-emerald-100 dark:bg-emerald-900/40 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-xs mt-0.5"><i class="fa-solid fa-plus"></i></div>
+                                    <div>
+                                        <div class="text-xs font-bold text-slate-800 dark:text-slate-200">동명대학교 경영대학</div>
+                                        <div class="text-xs text-slate-500 dark:text-slate-400">초기 N.C.E(표준분류 미정) 상태로 단과대 차원의 편제 구축 시도</div>
+                                    </div>
+                                </div>
+                                <div class="flex items-start gap-3">
+                                    <div class="w-6 h-6 rounded-full bg-emerald-100 dark:bg-emerald-900/40 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-xs mt-0.5"><i class="fa-solid fa-plus"></i></div>
+                                    <div>
+                                        <div class="text-xs font-bold text-slate-800 dark:text-slate-200">부산외국어대학교 경영전공</div>
+                                        <div class="text-xs text-slate-500 dark:text-slate-400">글로벌 언어 인프라와 경영학 결합으로 대외 경쟁력 확보</div>
+                                    </div>
+                                </div>
+                                <div class="flex items-start gap-3">
+                                    <div class="w-6 h-6 rounded-full bg-emerald-100 dark:bg-emerald-900/40 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-xs mt-0.5"><i class="fa-solid fa-plus"></i></div>
+                                    <div>
+                                        <div class="text-xs font-bold text-slate-800 dark:text-slate-200">동의대학교 부동산자산경영학부</div>
+                                        <div class="text-xs text-slate-500 dark:text-slate-400">특수 자산 관리 시장 특화 선제적 신설</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-gradient-to-br from-brand-900 to-slate-900 text-white p-6 sm:p-8 rounded-2xl shadow-md flex flex-col justify-between">
+                            <div>
+                                <div class="text-brand-300 text-xs font-semibold uppercase tracking-wider mb-2">Insight</div>
+                                <h4 class="text-lg font-bold mb-4">학문 체계의 과도기적 세분화</h4>
+                                <p class="text-slate-300 text-sm leading-relaxed mb-6">
+                                    일반 경영학 위주의 일방적 교육에서 벗어나, 지역 산업 자산과 시장의 실무적 요구를 소화하기 위해 세부 학부 및 전문 과정이 첫발을 내딛던 시기입니다.
+                                </p>
+                            </div>
+                            <div class="bg-white/10 backdrop-blur-sm p-4 rounded-xl border border-white/10">
+                                <div class="text-xs font-medium text-brand-200">주요 분석 키워드</div>
+                                <div class="text-sm font-bold mt-1 text-white">#N.C.E 상태 #단과대 편제 #부동산 자산경영 #특성화 도모</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div id="content-step2" class="timeline-content hidden transition-all duration-300">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
+                        <div class="bg-white dark:bg-slate-800 p-6 sm:p-8 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm flex flex-col justify-between">
+                            <div>
+                                <div class="inline-block px-3 py-1 rounded-md bg-purple-100 dark:bg-purple-900/50 text-purple-700 dark:text-purple-300 font-semibold text-xs mb-3">중기 개편 특성</div>
+                                <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">학과명 '변경' 및 빅데이터 기술 융합</h3>
+                                <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-4">
+                                    4차 산업혁명 환경과 서비스 산업 고도화 흐름 속에서 대대적인 학과명 변경 및 실무 기술(빅데이터, 컨벤션, 글로벌 서비스) 투영을 통한 브랜드 리포지셔닝이 활발했습니다.
+                                </p>
+                            </div>
+                            <div class="space-y-3 pt-4 border-t border-slate-100 dark:border-slate-700">
+                                <div class="flex items-start gap-3">
+                                    <div class="w-6 h-6 rounded-full bg-amber-100 dark:bg-amber-900/40 text-amber-600 dark:text-amber-400 flex items-center justify-center text-xs mt-0.5"><i class="fa-solid fa-pen-to-square"></i></div>
+                                    <div>
+                                        <div class="text-xs font-bold text-slate-800 dark:text-slate-200">동서대학교 경영/호텔/관광 계열</div>
+                                        <div class="text-xs text-slate-500 dark:text-slate-400">상태 '변경' 지정을 통해 정교한 서비스 경영으로 개편</div>
+                                    </div>
+                                </div>
+                                <div class="flex items-start gap-3">
+                                    <div class="w-6 h-6 rounded-full bg-emerald-100 dark:bg-emerald-900/40 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-xs mt-0.5"><i class="fa-solid fa-plus"></i></div>
+                                    <div>
+                                        <div class="text-xs font-bold text-slate-800 dark:text-slate-200">동의대학교 글로벌호스피탈리티경영</div>
+                                        <div class="text-xs text-slate-500 dark:text-slate-400">관광 범주를 글로벌 서비스 전반으로 확장 신설</div>
+                                    </div>
+                                </div>
+                                <div class="flex items-start gap-3">
+                                    <div class="w-6 h-6 rounded-full bg-indigo-100 dark:bg-indigo-900/40 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-xs mt-0.5"><i class="fa-solid fa-microchip"></i></div>
+                                    <div>
+                                        <div class="text-xs font-bold text-slate-800 dark:text-slate-200">산업경영빅데이터공학과 (동의대)</div>
+                                        <div class="text-xs text-slate-500 dark:text-slate-400">공학 기초 + 빅데이터 분석 결합으로 데이터 경영 안착</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-gradient-to-br from-purple-900 to-slate-900 text-white p-6 sm:p-8 rounded-2xl shadow-md flex flex-col justify-between">
+                            <div>
+                                <div class="text-purple-300 text-xs font-semibold uppercase tracking-wider mb-2">Re-Branding</div>
+                                <h4 class="text-lg font-bold mb-4">시장 가치 제고와 시행착오</h4>
+                                <p class="text-slate-300 text-sm leading-relaxed mb-6">
+                                    시장 선호도가 높은 핵심 키워드를 직관적으로 학과명에 이식했습니다. 이는 졸업생의 실무 경쟁력을 담보함과 동시에 후속 통합의 자산이 되었습니다.
+                                </p>
+                            </div>
+                            <div class="bg-white/10 backdrop-blur-sm p-4 rounded-xl border border-white/10">
+                                <div class="text-xs font-medium text-purple-200">주요 분석 키워드</div>
+                                <div class="text-sm font-bold mt-1 text-white">#학제 고도화 #빅데이터 경영 #재구조화(Restructuring)</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div id="content-step3" class="timeline-content hidden transition-all duration-300">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
+                        <div class="bg-white dark:bg-slate-800 p-6 sm:p-8 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm flex flex-col justify-between">
+                            <div>
+                                <div class="inline-block px-3 py-1 rounded-md bg-emerald-100 dark:bg-emerald-900/50 text-emerald-700 dark:text-emerald-300 font-semibold text-xs mb-3">최종 현행 특성</div>
+                                <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">학학과 '통합' 및 자원 집중의 전문화</h3>
+                                <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-4">
+                                    무분별한 확장 단계를 지나 학령인구 감소 및 사회 변화에 대응해 강점 앵커 브랜드를 중심으로 자원을 집중하고 거버넌스를 효율화하는 단계입니다.
+                                </p>
+                            </div>
+                            <div class="space-y-3 pt-4 border-t border-slate-100 dark:border-slate-700">
+                                <div class="flex items-start gap-3">
+                                    <div class="w-6 h-6 rounded-full bg-blue-100 dark:bg-blue-900/40 text-blue-600 dark:text-blue-400 flex items-center justify-center text-xs mt-0.5"><i class="fa-solid fa-object-group"></i></div>
+                                    <div>
+                                        <div class="text-xs font-bold text-slate-800 dark:text-slate-200">국립한국해양대학교 해운경영학부</div>
+                                        <div class="text-xs text-slate-500 dark:text-slate-400">세부 트랙 학과 '통합'을 통한 앵커 브랜드 시너지 극대화</div>
+                                    </div>
+                                </div>
+                                <div class="flex items-start gap-3">
+                                    <div class="w-6 h-6 rounded-full bg-amber-100 dark:bg-amber-900/40 text-amber-600 dark:text-amber-400 flex items-center justify-center text-xs mt-0.5"><i class="fa-solid fa-arrows-rotate"></i></div>
+                                    <div>
+                                        <div class="text-xs font-bold text-slate-800 dark:text-slate-200">신라대 호텔·의료관광경영학부</div>
+                                        <div class="text-xs text-slate-500 dark:text-slate-400">관광과 의료의 결합을 위한 대대적 학제 재편(Re-establishment)</div>
+                                    </div>
+                                </div>
+                                <div class="flex items-start gap-3">
+                                    <div class="w-6 h-6 rounded-full bg-purple-100 dark:bg-purple-900/40 text-purple-600 dark:text-purple-400 flex items-center justify-center text-xs mt-0.5"><i class="fa-solid fa-[#]"></i></div>
+                                    <div>
+                                        <div class="text-xs font-bold text-slate-800 dark:text-slate-200">동의대 산업경영빅데이터공학</div>
+                                        <div class="text-xs text-slate-500 dark:text-slate-400">학과 단위에서 학부 내 전공 단위 '변경'으로 유연성 증대</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-gradient-to-br from-emerald-900 to-slate-900 text-white p-6 sm:p-8 rounded-2xl shadow-md flex flex-col justify-between">
+                            <div>
+                                <div class="text-emerald-300 text-xs font-semibold uppercase tracking-wider mb-2">Efficiency</div>
+                                <h4 class="text-lg font-bold mb-4">전문화된 통합과 유연성</h4>
+                                <p class="text-slate-300 text-sm leading-relaxed mb-6">
+                                    학제 간 벽을 허물어 교육의 효용성을 끌어올렸으며, 수험생 및 사회적 수요에 가변적으로 대응하는 유연한 학제 모델을 확립했습니다.
+                                </p>
+                            </div>
+                            <div class="bg-white/10 backdrop-blur-sm p-4 rounded-xl border border-white/10">
+                                <div class="text-xs font-medium text-emerald-200">주요 분석 키워드</div>
+                                <div class="text-sm font-bold mt-1 text-white">#거버넌스 효율화 #전문화된 통합 #앵커 브랜드</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Regional Specialization Index Section -->
+    <section id="specialization" class="py-16 md:py-24 border-b border-slate-200 dark:border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+                <div>
+                    <span class="text-brand-600 dark:text-brand-400 font-bold text-sm uppercase tracking-widest">Industry Alignment</span>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white mt-1">지역 산업 연계 특성화 지표</h2>
+                </div>
+                <p class="text-slate-500 dark:text-slate-400 text-sm mt-2 md:mt-0 max-w-md">
+                    부산의 지정학적 특성(해양, 의료, 제조 기반)과 결합된 특성화 교육과정의 주요 분석 지표입니다.
                 </p>
             </div>
-        </section>
 
-        <!-- SECTION 2: ACCIDENT TYPE ANALYSIS -->
-        <section id="type-analysis" class="space-y-6">
-            <div class="flex items-center space-x-2">
-                <i data-lucide="pie-chart" class="w-6 h-6 text-brand-500"></i>
-                <h2 class="text-2xl font-bold tracking-tight">2. 사고유형별 세부 분석</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- 해양/수산 -->
+                <div class="bg-white dark:bg-slate-800 rounded-2xl p-6 border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden group">
+                    <div class="w-12 h-12 rounded-xl bg-blue-100 dark:bg-blue-900/50 text-blue-600 dark:text-blue-400 flex items-center justify-center text-xl mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-ship"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">해양 / 수산 경영</h3>
+                    <p class="text-xs font-semibold text-brand-600 dark:text-brand-400 mb-4">국립대 중심의 해양 물류·금융 관리 특화</p>
+                    <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-6">
+                        부산의 해양 수도 지위를 반영하여 해운, 항만, 수산 경제 관리를 전문적으로 다루는 국립대 중심 특성화 라인입니다.
+                    </p>
+                    <div class="bg-slate-50 dark:bg-slate-700/50 p-3.5 rounded-xl text-xs space-y-1.5 border border-slate-100 dark:border-slate-700">
+                        <div class="font-bold text-slate-700 dark:text-slate-200">주요 대학 사례</div>
+                        <div class="text-slate-500 dark:text-slate-400">• 국립한국해양대: 해운경영학부</div>
+                        <div class="text-slate-500 dark:text-slate-400">• 국립부경대: 해양수산경영경제학부</div>
+                    </div>
+                </div>
+
+                <!-- 의료/보건 -->
+                <div class="bg-white dark:bg-slate-800 rounded-2xl p-6 border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden group">
+                    <div class="w-12 h-12 rounded-xl bg-rose-100 dark:bg-rose-900/50 text-rose-600 dark:text-rose-400 flex items-center justify-center text-xl mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-hospital"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">의료 / 보건 경영</h3>
+                    <p class="text-xs font-semibold text-rose-600 dark:text-rose-400 mb-4">사립대 중심의 보건 관리 융합 (주/야간)</p>
+                    <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-6">
+                        지역 의료 인프라 확대 및 성인 학습자 수요에 맞춰 병원 경영, 보건 관리, 의료 관광 서비스를 결합한 고부가가치 계열입니다.
+                    </p>
+                    <div class="bg-slate-50 dark:bg-slate-700/50 p-3.5 rounded-xl text-xs space-y-1.5 border border-slate-100 dark:border-slate-700">
+                        <div class="font-bold text-slate-700 dark:text-slate-200">주요 대학 사례</div>
+                        <div class="text-slate-500 dark:text-slate-400">• 고신대: 의료경영학부 / 영산대: 의료경영학과</div>
+                        <div class="text-slate-500 dark:text-slate-400">• 동의대: 의료경영학과 / 부산가톨릭대: 병원경영학과</div>
+                    </div>
+                </div>
+
+                <!-- 산업공학 융합 -->
+                <div class="bg-white dark:bg-slate-800 rounded-2xl p-6 border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden group">
+                    <div class="w-12 h-12 rounded-xl bg-amber-100 dark:bg-amber-900/50 text-amber-600 dark:text-amber-400 flex items-center justify-center text-xl mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-gears"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">산업공학 & 데이터 융합</h3>
+                    <p class="text-xs font-semibold text-amber-600 dark:text-amber-400 mb-4">제조 현장 효율화 + 데이터 기반 의사결정</p>
+                    <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-6">
+                        공학적 관리 기법에 빅데이터 분석 기술을 통합하여 동남권 제조 현장의 인텔리전스를 주도하는 융합 인재 양성 모델입니다.
+                    </p>
+                    <div class="bg-slate-50 dark:bg-slate-700/50 p-3.5 rounded-xl text-xs space-y-1.5 border border-slate-100 dark:border-slate-700">
+                        <div class="font-bold text-slate-700 dark:text-slate-200">주요 대학 사례</div>
+                        <div class="text-slate-500 dark:text-slate-400">• 동아대/경성대: 산업경영공학과</div>
+                        <div class="text-slate-500 dark:text-slate-400">• 동의대: 산업경영빅데이터공학전공</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- University List & Filter Section -->
+    <section id="university-list" class="py-16 md:py-24 bg-slate-100/60 dark:bg-slate-900/50 border-b border-slate-200 dark:border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <span class="text-brand-600 dark:text-brand-400 font-bold text-sm uppercase tracking-widest">Current Status</span>
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white mt-1">최종 시점 대학별 경영 계열 학과 현황</h2>
+                <p class="text-slate-600 dark:text-slate-400 mt-2 text-sm sm:text-base">부산 지역 주요 대학 및 사이버 대학의 현행 경영 계열 학과 편제 리스트입니다.</p>
             </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                <!-- Type Overview Card 1 -->
-                <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700/60 space-y-4">
-                    <div class="flex justify-between items-center">
-                        <h3 class="font-bold text-lg flex items-center space-x-2">
-                            <i data-lucide="user-check" class="w-5 h-5 text-blue-500"></i>
-                            <span>차대사람 사고</span>
-                        </h3>
-                        <span class="text-xs font-bold px-2.5 py-1 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-full">1,685건 (32.2%)</span>
+            <!-- Filter Controls -->
+            <div class="bg-white dark:bg-slate-800 p-4 sm:p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm mb-8">
+                <div class="flex flex-col md:flex-row gap-4 justify-between items-center">
+                    <!-- Search Input -->
+                    <div class="relative w-full md:w-80">
+                        <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
+                        <input type="text" id="searchInput" onkeyup="filterUniversities()" placeholder="대학명 또는 학과명 검색..." class="w-full pl-10 pr-4 py-2.5 bg-slate-50 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 dark:text-white">
                     </div>
-                    <p class="text-xs text-slate-500">보행자 안전을 위협하는 세부 사고 형태 분석</p>
-                    <ul class="space-y-2 text-sm">
-                        <li class="flex justify-between p-2 bg-slate-50 dark:bg-slate-700/40 rounded-lg">
-                            <span>기타</span>
-                            <span class="font-medium">803건 (사망 3 / 부상 868)</span>
-                        </li>
-                        <li class="flex justify-between p-2 bg-slate-50 dark:bg-slate-700/40 rounded-lg">
-                            <span class="text-amber-600 dark:text-amber-400 font-semibold">보도통행중</span>
-                            <span class="font-medium">488건 (사망 1 / 부상 507)</span>
-                        </li>
-                        <li class="flex justify-between p-2 bg-slate-50 dark:bg-slate-700/40 rounded-lg">
-                            <span class="text-danger-500 font-semibold">횡단중</span>
-                            <span class="font-medium">263건 (사망 4 / 부상 275)</span>
-                        </li>
-                    </ul>
-                </div>
 
-                <!-- Type Overview Card 2 -->
-                <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700/60 space-y-4">
-                    <div class="flex justify-between items-center">
-                        <h3 class="font-bold text-lg flex items-center space-x-2">
-                            <i data-lucide="car" class="w-5 h-5 text-brand-500"></i>
-                            <span>차대차 사고</span>
-                        </h3>
-                        <span class="text-xs font-bold px-2.5 py-1 bg-brand-50 dark:bg-brand-900/30 text-brand-600 dark:text-brand-400 rounded-full">3,331건 (63.6%)</span>
-                    </div>
-                    <p class="text-xs text-slate-500">가장 빈번하게 발생하며 충돌 시 인명 피해 심각</p>
-                    <div class="overflow-x-auto">
-                        <table class="w-full text-xs text-left">
-                            <thead class="bg-slate-50 dark:bg-slate-700/50 text-slate-500">
-                                <tr>
-                                    <th class="p-2">유형</th>
-                                    <th class="p-2 text-right">건수</th>
-                                    <th class="p-2 text-right">사망</th>
-                                    <th class="p-2 text-right">부상</th>
-                                </tr>
-                            </thead>
-                            <tbody class="divide-y divide-slate-100 dark:divide-slate-700">
-                                <tr>
-                                    <td class="p-2 font-medium">충돌</td>
-                                    <td class="p-2 text-right">1,774</td>
-                                    <td class="p-2 text-right font-bold text-danger-500">30</td>
-                                    <td class="p-2 text-right">1,958</td>
-                                </tr>
-                                <tr>
-                                    <td class="p-2 font-medium">추돌</td>
-                                    <td class="p-2 text-right">178</td>
-                                    <td class="p-2 text-right">2</td>
-                                    <td class="p-2 text-right">205</td>
-                                </tr>
-                                <tr>
-                                    <td class="p-2 font-medium">기타</td>
-                                    <td class="p-2 text-right">1,379</td>
-                                    <td class="p-2 text-right">22</td>
-                                    <td class="p-2 text-right">1,504</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
-                <!-- Type Overview Card 3 -->
-                <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700/60 space-y-4">
-                    <div class="flex justify-between items-center">
-                        <h3 class="font-bold text-lg flex items-center space-x-2">
-                            <i data-lucide="alert-octagon" class="w-5 h-5 text-danger-500"></i>
-                            <span>차량단독 사고</span>
-                        </h3>
-                        <span class="text-xs font-bold px-2.5 py-1 bg-red-50 dark:bg-red-900/30 text-danger-500 rounded-full">219건 (4.1%)</span>
-                    </div>
-                    <p class="text-xs text-slate-500">발생 비중은 낮으나 압도적으로 높은 치사율</p>
-                    <div class="p-3 bg-red-50/50 dark:bg-red-950/20 border border-red-100 dark:border-red-900/30 rounded-xl space-y-2">
-                        <div class="flex justify-between items-center">
-                            <span class="text-xs font-semibold text-danger-600 dark:text-danger-400">차량단독 치사율</span>
-                            <span class="text-lg font-extrabold text-danger-600 dark:text-danger-400">10.5%</span>
-                        </div>
-                        <p class="text-xs text-slate-600 dark:text-slate-400">
-                            사망자 23명으로 <strong>전체 사망자의 27%</strong> 차지.
-                        </p>
-                    </div>
-                    <div class="space-y-1 text-xs">
-                        <div class="flex justify-between p-1.5 border-b border-slate-100 dark:border-slate-700">
-                            <span>도로이탈 추락 (7건)</span>
-                            <span class="font-bold text-danger-500">사망 5명</span>
-                        </div>
-                        <div class="flex justify-between p-1.5">
-                            <span>전도/전복 (57건)</span>
-                            <span class="font-bold">사망 3명</span>
-                        </div>
+                    <!-- Filter Buttons -->
+                    <div class="flex flex-wrap gap-2 w-full md:w-auto justify-start md:justify-end">
+                        <button onclick="setCategoryFilter('all')" class="filter-btn active-filter px-3.5 py-2 rounded-xl text-xs font-semibold bg-brand-600 text-white transition-all">전체</button>
+                        <button onclick="setCategoryFilter('national')" class="filter-btn px-3.5 py-2 rounded-xl text-xs font-semibold bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-600 transition-all">국립대</button>
+                        <button onclick="setCategoryFilter('private')" class="filter-btn px-3.5 py-2 rounded-xl text-xs font-semibold bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-600 transition-all">사립대</button>
+                        <button onclick="setCategoryFilter('cyber')" class="filter-btn px-3.5 py-2 rounded-xl text-xs font-semibold bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-600 transition-all">사이버대</button>
                     </div>
                 </div>
             </div>
 
-            <!-- Chart Row for Section 2 -->
-            <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700/60">
-                <h3 class="font-bold text-base mb-4">사고유형별 치사율(%) 및 사망자 비중 비교</h3>
-                <div class="chart-container">
-                    <canvas id="typeChart"></canvas>
-                </div>
+            <!-- University Cards Grid -->
+            <div id="universityGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Cards dynamically injected or pre-rendered with data attributes -->
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- SECTION 3: TIME PATTERN ANALYSIS -->
-        <section id="time-analysis" class="space-y-6">
-            <div class="flex items-center space-x-2">
-                <i data-lucide="clock" class="w-6 h-6 text-brand-500"></i>
-                <h2 class="text-2xl font-bold tracking-tight">3. 시간대별 사고 발생 패턴 분석</h2>
-            </div>
-
-            <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700/60 space-y-6">
-                <div>
-                    <h3 class="font-bold text-lg">24시간대별 사고 건수 및 사망자 추이</h3>
-                    <p class="text-xs text-slate-500 mt-1">2시간 단위 데이터 분석 - 최다 빈도 지점과 최고 치명도 지점의 불일치 특성</p>
-                </div>
-
-                <div class="chart-container">
-                    <canvas id="timeChart"></canvas>
-                </div>
-
-                <!-- Time Insight Grid -->
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-4 border-t border-slate-100 dark:border-slate-700">
-                    <div class="p-4 bg-amber-50/50 dark:bg-amber-950/20 border border-amber-200 dark:border-amber-900/40 rounded-xl space-y-1">
-                        <div class="flex items-center space-x-2 text-amber-700 dark:text-amber-400 font-bold text-sm">
-                            <i data-lucide="sun" class="w-4 h-4"></i>
-                            <span>출근/등교 시간대 (08~10시)</span>
-                        </div>
-                        <div class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
-                            <strong>사망자 최다 발생 (17명)</strong>, 치사율 <strong>2.41%</strong>로 일일 최고 수준. 바쁜 이동 속도와 부주의가 치명적 사고 유발.
-                        </div>
-                    </div>
-
-                    <div class="p-4 bg-blue-50/50 dark:bg-blue-950/20 border border-blue-200 dark:border-blue-900/40 rounded-xl space-y-1">
-                        <div class="flex items-center space-x-2 text-blue-700 dark:text-blue-400 font-bold text-sm">
-                            <i data-lucide="sunset" class="w-4 h-4"></i>
-                            <span>오후/퇴근 시간대 (14~20시)</span>
-                        </div>
-                        <div class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
-                            <strong>일일 사고 최다 밀집 (16~18시: 881건)</strong>. 통행량 폭증으로 사고 빈도가 높으나 치사율(0.57%)은 상대적으로 낮음.
-                        </div>
-                    </div>
-
-                    <div class="p-4 bg-purple-50/50 dark:bg-purple-950/20 border border-purple-200 dark:border-purple-900/40 rounded-xl space-y-1">
-                        <div class="flex items-center space-x-2 text-purple-700 dark:text-purple-400 font-bold text-sm">
-                            <i data-lucide="moon" class="w-4 h-4"></i>
-                            <span>심야/새벽 시간대 (22~06시)</span>
-                        </div>
-                        <div class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
-                            전체 사고 건수는 감소하나 시야 제한 및 야간 차선 미식별 등으로 지속적인 인명 피해 발생.
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- SECTION 4: COMPLEX COMBINATION MATRIX -->
-        <section id="matrix" class="space-y-6">
-            <div class="flex items-center space-x-2">
-                <i data-lucide="layers" class="w-6 h-6 text-brand-500"></i>
-                <h2 class="text-2xl font-bold tracking-tight">4. 사고유형 × 시간대별 고위험 복합 특성</h2>
+    <!-- Conclusions & Key Takeaways Section -->
+    <section id="conclusion" class="py-16 md:py-24 border-b border-slate-200 dark:border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-brand-600 dark:text-brand-400 font-bold text-sm uppercase tracking-widest">Synthesis & Outlook</span>
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white mt-1">결론 및 종합 시사점</h2>
+                <p class="text-slate-600 dark:text-slate-400 mt-2 text-sm sm:text-base">전통 경영에서 지역 산업 맞춤형 융합 경영으로의 패러다임 전환</p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <!-- Matrix Item 1 -->
-                <div class="p-6 bg-white dark:bg-slate-800 rounded-2xl shadow-sm border-l-4 border-l-amber-500 border-y border-r border-slate-100 dark:border-slate-700/60 space-y-3">
-                    <span class="text-xs font-bold px-2 py-0.5 bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300 rounded">오후 피크 (16시~18시)</span>
-                    <h3 class="font-bold text-lg">보도통행 중 충돌 사고</h3>
-                    <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-                        일일 보도통행 사고(488건)의 약 <strong>21%인 103건</strong>이 이 시간대에 집중. 하교/퇴근 보행자와 자전거 이동 동선 중첩으로 위험 극대화.
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
+                <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm">
+                    <div class="w-10 h-10 rounded-xl bg-blue-100 dark:bg-blue-900/40 text-blue-600 dark:text-blue-400 flex items-center justify-center font-bold mb-4">1</div>
+                    <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">전문화된 융합 경영 안착</h3>
+                    <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
+                        빅데이터 등 첨단 기술과 해운, 의료, 부동산 등 현장 중심 분야가 결합된 형태의 경영 교육이 보편화되었습니다.
                     </p>
                 </div>
 
-                <!-- Matrix Item 2 -->
-                <div class="p-6 bg-white dark:bg-slate-800 rounded-2xl shadow-sm border-l-4 border-l-danger-500 border-y border-r border-slate-100 dark:border-slate-700/60 space-y-3">
-                    <span class="text-xs font-bold px-2 py-0.5 bg-red-100 dark:bg-red-900/40 text-danger-600 dark:text-danger-400 rounded">오전 러시 (08시~10시)</span>
-                    <h3 class="font-bold text-lg">차대차 충돌 사고</h3>
-                    <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-                        해당 시간대에만 <strong>260건의 충돌 사고, 사망자 8명</strong> 집중 발생. 오전 시간대 높은 치사율을 견인하는 핵심 위험 패턴.
+                <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm">
+                    <div class="w-10 h-10 rounded-xl bg-indigo-100 dark:bg-indigo-900/40 text-indigo-600 dark:text-indigo-400 flex items-center justify-center font-bold mb-4">2</div>
+                    <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">대학별 특성화 앵커 구축</h3>
+                    <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
+                        해양(한국해양대, 부경대), 데이터/자산(동의대), 의료서비스(영산대, 고신대, 신라대) 등 독자적 강점 분야를 축으로 차별화되었습니다.
                     </p>
                 </div>
 
-                <!-- Matrix Item 3 -->
-                <div class="p-6 bg-white dark:bg-slate-800 rounded-2xl shadow-sm border-l-4 border-l-purple-500 border-y border-r border-slate-100 dark:border-slate-700/60 space-y-3">
-                    <span class="text-xs font-bold px-2 py-0.5 bg-purple-100 dark:bg-purple-900/40 text-purple-700 dark:text-purple-300 rounded">야간 (20시~22시)</span>
-                    <h3 class="font-bold text-lg">차량단독 사고</h3>
-                    <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-                        이 시간대 차량단독 사망자 <strong>5명 발생</strong>. 이는 연간 전체 단독 사고 사망자(23명)의 약 <strong>22%</strong>에 해당되는 치명적인 수치.
+                <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm">
+                    <div class="w-10 h-10 rounded-xl bg-emerald-100 dark:bg-emerald-900/40 text-emerald-600 dark:text-emerald-400 flex items-center justify-center font-bold mb-4">3</div>
+                    <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">플랫폼 및 대상 다변화</h3>
+                    <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
+                        부산디지털대, 화신사이버대 등 온라인 교육 기관도 학과 변경을 통해 성인 학습자 및 재교육 시장을 적극 공략 중입니다.
                     </p>
                 </div>
             </div>
-        </section>
 
-        <!-- SECTION 5: RECOMMENDATIONS -->
-        <section id="proposals" class="space-y-6">
-            <div class="flex items-center space-x-2">
-                <i data-lucide="shield-check" class="w-6 h-6 text-brand-500"></i>
-                <h2 class="text-2xl font-bold tracking-tight">5. 통계 기반 시사점 및 맞춤형 정책 제언</h2>
-            </div>
-
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                <!-- Card 1 -->
-                <div class="bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-sm border border-slate-100 dark:border-slate-700/60 flex flex-col justify-between space-y-4">
-                    <div class="space-y-3">
-                        <div class="w-10 h-10 rounded-xl bg-brand-50 dark:bg-brand-900/40 text-brand-600 dark:text-brand-400 flex items-center justify-center font-bold text-lg">
-                            1
-                        </div>
-                        <h3 class="font-bold text-lg">오전 치사율 감소를 위한 집중 안전 캠페인</h3>
-                        <div class="p-3 bg-slate-50 dark:bg-slate-700/40 rounded-lg text-xs text-slate-600 dark:text-slate-300">
-                            <strong>통계 근거:</strong> 08~10시 치사율 2.41% (평균 상회), 사망자 17명 집중
-                        </div>
-                        <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-                            출근·등교 시간대를 <strong>'자전거 안전 집중 관리 시간'</strong>으로 지정하고, 교차로 신호 준수 및 과속 방지를 위한 경찰 현장 단속과 캠페인을 병행해야 합니다.
-                        </p>
+            <!-- Policy Recommendation Box -->
+            <div class="bg-gradient-to-r from-brand-700 to-blue-800 text-white rounded-2xl p-8 shadow-xl">
+                <div class="max-w-4xl mx-auto">
+                    <div class="flex items-center gap-3 mb-4">
+                        <i class="fa-solid fa-compass text-amber-400 text-2xl"></i>
+                        <h3 class="text-xl font-bold">최종 향후 제언 (Future Outlook)</h3>
                     </div>
-                </div>
-
-                <!-- Card 2 -->
-                <div class="bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-sm border border-slate-100 dark:border-slate-700/60 flex flex-col justify-between space-y-4">
-                    <div class="space-y-3">
-                        <div class="w-10 h-10 rounded-xl bg-brand-50 dark:bg-brand-900/40 text-brand-600 dark:text-brand-400 flex items-center justify-center font-bold text-lg">
-                            2
-                        </div>
-                        <h3 class="font-bold text-lg">보행자 밀집 시간대 보도통행 차단 및 분리 시설</h3>
-                        <div class="p-3 bg-slate-50 dark:bg-slate-700/40 rounded-lg text-xs text-slate-600 dark:text-slate-300">
-                            <strong>통계 근거:</strong> 16~20시 보도통행(172건) 및 횡단 중 사고 다발
-                        </div>
-                        <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-                            보도 주행 금지 계도를 강화하고, 유동인구가 많은 대중교통 하차 지점 및 횡단보도 인근에 <strong>자전거-보행자 분리 유도 시설 및 난간</strong>을 확장 설치해야 합니다.
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Card 3 -->
-                <div class="bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-sm border border-slate-100 dark:border-slate-700/60 flex flex-col justify-between space-y-4">
-                    <div class="space-y-3">
-                        <div class="w-10 h-10 rounded-xl bg-brand-50 dark:bg-brand-900/40 text-brand-600 dark:text-brand-400 flex items-center justify-center font-bold text-lg">
-                            3
-                        </div>
-                        <h3 class="font-bold text-lg">고위험 차량단독 사고 예방 인프라 보강</h3>
-                        <div class="p-3 bg-slate-50 dark:bg-slate-700/40 rounded-lg text-xs text-slate-600 dark:text-slate-300">
-                            <strong>통계 근거:</strong> 도로이탈 추락(7건 중 사망 5명), 야간 단독 사고 치사율 극대
-                        </div>
-                        <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-                            급경사, 급커브, 하천변 등 추락 위험 지역에 <strong>안전 펜스 보강</strong> 및 야간 시인성을 위한 <strong>LED 조명·반사판</strong>을 확충하고 고령자 교육을 강화해야 합니다.
-                        </p>
+                    <p class="text-slate-100 text-sm sm:text-base leading-relaxed mb-6">
+                        향후 부산 지역 대학의 학제 구조는 더욱 강력한 <strong>'거버넌스 효율화'</strong>와 <strong>'디지털 트랜스포메이션'</strong>의 흐름을 보일 것입니다. 특히 한국해양대의 사례와 같은 학과 간 통합은 인구 구조 변화에 대응하는 표준 모델이 될 가능성이 높으며, 인공지능과 데이터 기술이 모든 경영 교육의 기본 소양으로 내재화되는 기술 융합형 개편이 지속될 전망입니다.
+                    </p>
+                    <div class="flex flex-wrap gap-3 text-xs font-semibold text-brand-100">
+                        <span class="bg-white/10 px-3 py-1.5 rounded-lg border border-white/10">AI & Big Data 내재화</span>
+                        <span class="bg-white/10 px-3 py-1.5 rounded-lg border border-white/10">학학 간 통합 거버넌스</span>
+                        <span class="bg-white/10 px-3 py-1.5 rounded-lg border border-white/10">지역 산업 생태계 밀착</span>
                     </div>
                 </div>
             </div>
-        </section>
-
-    </main>
+        </div>
+    </section>
 
     <!-- Footer -->
-    <footer class="mt-16 border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 py-8">
-        <div class="max-w-7xl mx-auto px-4 text-center text-xs text-slate-500 space-y-2">
-            <p>2025년 자전거 가해운전자 교통사고 통계 데이터 기반 분석 대시보드 포트폴리오</p>
-            <p>© 2026 Traffic Safety Data Analytics Portfolio. All rights reserved.</p>
+    <footer class="py-8 bg-white dark:bg-slate-950 text-slate-500 dark:text-slate-400 text-xs text-center border-t border-slate-200 dark:border-slate-800">
+        <div class="max-w-7xl mx-auto px-4">
+            <p class="mb-2">부산 지역 고등교육 기관 경영계열 학과 시계열 분석 포트폴리오</p>
+            <p class="text-slate-400 dark:text-slate-600">Based on Time-Series Higher Education Dataset Analysis Report</p>
         </div>
     </footer>
 
-    <!-- Chart Script and Theme Controller -->
+    <!-- JavaScript Data & Interactivity -->
     <script>
-        // Lucide Icons Render
-        lucide.createIcons();
-
-        // Dark/Light Theme Toggle Logic
-        const themeToggleBtn = document.getElementById('themeToggle');
-        const html = document.documentElement;
+        // Theme Toggle Logic
+        const themeToggleBtn = document.getElementById('themeToggleBtn');
+        
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
 
         themeToggleBtn.addEventListener('click', () => {
-            if (html.classList.contains('dark')) {
-                html.classList.remove('dark');
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
                 localStorage.setItem('theme', 'light');
             } else {
-                html.classList.add('dark');
+                document.documentElement.classList.add('dark');
                 localStorage.setItem('theme', 'dark');
             }
-            // Re-render charts for dark mode styling adaptation
-            updateChartColors();
         });
 
-        // Initialize Theme from Local Storage or System
-        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-            html.classList.add('dark');
-        } else {
-            html.classList.remove('dark');
+        // Timeline Switcher Logic
+        function switchTimeline(stepId) {
+            // Update tabs UI
+            document.querySelectorAll('.timeline-tab').forEach(tab => {
+                tab.classList.remove('bg-brand-600', 'text-white', 'shadow-sm');
+                tab.classList.add('text-slate-600', 'dark:text-slate-300');
+            });
+            const selectedTab = document.getElementById(`tab-${stepId}`);
+            selectedTab.classList.add('bg-brand-600', 'text-white', 'shadow-sm');
+            selectedTab.classList.remove('text-slate-600', 'dark:text-slate-300');
+
+            // Update content UI
+            document.querySelectorAll('.timeline-content').forEach(content => {
+                content.classList.add('hidden');
+            });
+            document.getElementById(`content-${stepId}`).classList.remove('hidden');
         }
 
-        // Color Helper
-        function isDark() {
-            return html.classList.contains('dark');
-        }
-
-        // --- Chart 1: Accident Type Fatality Rate ---
-        const typeCtx = document.getElementById('typeChart').getContext('2d');
-        let typeChart = new Chart(typeCtx, {
-            type: 'bar',
-            data: {
-                labels: ['차대사람 (총 1,685건)', '차대차 (총 3,331건)', '차량단독 (총 219건)'],
-                datasets: [
-                    {
-                        label: '치사율 (%)',
-                        data: [0.47, 1.62, 10.50],
-                        backgroundColor: ['#3b82f6', '#0284c7', '#ef4444'],
-                        borderRadius: 8,
-                        yAxisID: 'y'
-                    },
-                    {
-                        label: '사망자 수 (명)',
-                        data: [8, 54, 23],
-                        type: 'line',
-                        borderColor: '#f59e0b',
-                        backgroundColor: '#f59e0b',
-                        pointRadius: 6,
-                        yAxisID: 'y1'
-                    }
-                ]
+        // University Data Array
+        const universities = [
+            {
+                name: "부산대학교",
+                type: "national",
+                typeName: "국립대",
+                departments: ["경영학과"]
             },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                scales: {
-                    x: {
-                        ticks: { color: () => isDark() ? '#94a3b8' : '#64748b' },
-                        grid: { display: false }
-                    },
-                    y: {
-                        type: 'linear',
-                        position: 'left',
-                        title: { display: true, text: '치사율 (%)', color: () => isDark() ? '#94a3b8' : '#64748b' },
-                        ticks: { color: () => isDark() ? '#94a3b8' : '#64748b' },
-                        grid: { color: () => isDark() ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)' }
-                    },
-                    y1: {
-                        type: 'linear',
-                        position: 'right',
-                        title: { display: true, text: '사망자 수 (명)', color: () => isDark() ? '#94a3b8' : '#64748b' },
-                        ticks: { color: () => isDark() ? '#94a3b8' : '#64748b' },
-                        grid: { drawOnChartArea: false }
-                    }
-                },
-                plugins: {
-                    legend: {
-                        labels: { color: () => isDark() ? '#e2e8f0' : '#334155' }
-                    }
-                }
-            }
-        });
-
-        // --- Chart 2: Time Series Analysis ---
-        const timeCtx = document.getElementById('timeChart').getContext('2d');
-        const timeLabels = ['00-02', '02-04', '04-06', '06-08', '08-10', '10-12', '12-14', '14-16', '16-18', '18-20', '20-22', '22-24'];
-        const accData = [79, 32, 98, 302, 705, 502, 550, 744, 881, 725, 400, 217];
-        const deathData = [2, 2, 3, 10, 17, 9, 11, 9, 5, 6, 10, 1];
-
-        let timeChart = new Chart(timeCtx, {
-            type: 'line',
-            data: {
-                labels: timeLabels,
-                datasets: [
-                    {
-                        label: '사고 건수 (건)',
-                        data: accData,
-                        borderColor: '#0284c7',
-                        backgroundColor: 'rgba(2, 132, 199, 0.1)',
-                        fill: true,
-                        tension: 0.3,
-                        yAxisID: 'y'
-                    },
-                    {
-                        label: '사망자 수 (명)',
-                        data: deathData,
-                        borderColor: '#ef4444',
-                        backgroundColor: '#ef4444',
-                        pointRadius: [4, 4, 4, 5, 8, 4, 5, 5, 6, 5, 6, 4],
-                        pointHoverRadius: 8,
-                        pointBackgroundColor: [
-                            '#ef4444', '#ef4444', '#ef4444', '#ef4444', 
-                            '#dc2626', '#ef4444', '#ef4444', '#ef4444', 
-                            '#ef4444', '#ef4444', '#ef4444', '#ef4444'
-                        ],
-                        tension: 0.2,
-                        yAxisID: 'y1'
-                    }
-                ]
+            {
+                name: "국립부경대학교",
+                type: "national",
+                typeName: "국립대",
+                departments: ["경영학부", "경영학전공", "해양수산경영경제학부", "해양수산경영학전공", "시스템경영·안전공학부", "관광경영학전공", "국제경영학전공"]
             },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                interaction: {
-                    mode: 'index',
-                    intersect: false,
-                },
-                scales: {
-                    x: {
-                        ticks: { color: () => isDark() ? '#94a3b8' : '#64748b' },
-                        grid: { color: () => isDark() ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)' }
-                    },
-                    y: {
-                        type: 'linear',
-                        position: 'left',
-                        title: { display: true, text: '사고 건수 (건)', color: () => isDark() ? '#94a3b8' : '#64748b' },
-                        ticks: { color: () => isDark() ? '#94a3b8' : '#64748b' },
-                        grid: { color: () => isDark() ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)' }
-                    },
-                    y1: {
-                        type: 'linear',
-                        position: 'right',
-                        title: { display: true, text: '사망자 수 (명)', color: () => isDark() ? '#94a3b8' : '#64748b' },
-                        ticks: { color: () => isDark() ? '#94a3b8' : '#64748b' },
-                        grid: { drawOnChartArea: false }
-                    }
-                },
-                plugins: {
-                    legend: {
-                        labels: { color: () => isDark() ? '#e2e8f0' : '#334155' }
-                    },
-                    tooltip: {
-                        callbacks: {
-                            afterBody: function(context) {
-                                const index = context[0].dataIndex;
-                                if (index === 4) return '⚠️ 사망자 최다 발생 구간 (치사율 2.41%)';
-                                if (index === 8) return '🚨 일일 사고 발생 최다 피크 (881건)';
-                                return '';
-                            }
-                        }
-                    }
-                }
+            {
+                name: "국립한국해양대학교",
+                type: "national",
+                typeName: "국립대",
+                departments: ["해운경영학부 (통합)"]
+            },
+            {
+                name: "동아대학교",
+                type: "private",
+                typeName: "사립대",
+                departments: ["경영정보학과", "경영학과", "관광경영학과", "융합경영학과", "지식서비스경영학과", "산업경영공학과"]
+            },
+            {
+                name: "경성대학교",
+                type: "private",
+                typeName: "사립대",
+                departments: ["경영학과", "글로벌경영전공", "글로벌Hospitality경영전공", "호텔관광경영학전공", "호텔관광외식경영학부", "외식서비스경영학전공", "산업경영공학과"]
+            },
+            {
+                name: "동의대학교",
+                type: "private",
+                typeName: "사립대",
+                departments: ["경영학과", "경영정보학전공", "부동산금융·자산경영학과", "정보경영학부", "의료경영학과", "호텔·컨벤션경영학과", "산업경영빅데이터공학전공 (변경)", "외식경영학과", "국제관광경영학과"]
+            },
+            {
+                name: "신라대학교",
+                type: "private",
+                typeName: "사립대",
+                departments: ["경영학과", "호텔·의료관광경영학부 (재편/신설)", "기업경영학과 (계약학과)"]
+            },
+            {
+                name: "동서대학교",
+                type: "private",
+                typeName: "사립대",
+                departments: ["경영학부 (변경)", "경영학전공", "호텔경영학과", "관광경영·컨벤션학과"]
+            },
+            {
+                name: "부산외국어대학교",
+                type: "private",
+                typeName: "사립대",
+                departments: ["경영학부", "경영학부(경영전공, 회계전공)"]
+            },
+            {
+                name: "영산대학교",
+                type: "private",
+                typeName: "사립대",
+                departments: ["의료경영학과 (신설)", "호텔경영학과", "외식경영학과"]
+            },
+            {
+                name: "고신대학교",
+                type: "private",
+                typeName: "사립대",
+                departments: ["의료경영학부", "의료경영전공"]
+            },
+            {
+                name: "동명대학교",
+                type: "private",
+                typeName: "사립대",
+                departments: ["경영학과", "복지경영학과"]
+            },
+            {
+                name: "부산가톨릭대학교",
+                type: "private",
+                typeName: "사립대",
+                departments: ["경영학과", "병원경영학과 (주/야간)"]
+            },
+            {
+                name: "부산디지털대학교",
+                type: "cyber",
+                typeName: "사이버대",
+                departments: ["경영학과", "외식산업경영학과 (변경)", "사회복지경영학과"]
+            },
+            {
+                name: "화신사이버대학교",
+                type: "cyber",
+                typeName: "사이버대",
+                departments: ["복지경영학과"]
             }
-        });
+        ];
 
-        function updateChartColors() {
-            typeChart.update();
-            timeChart.update();
+        let currentCategory = 'all';
+
+        // Render University Cards
+        function renderUniversities(data) {
+            const grid = document.getElementById('universityGrid');
+            grid.innerHTML = '';
+
+            if (data.length === 0) {
+                grid.innerHTML = `
+                    <div class="col-span-full py-12 text-center text-slate-400 dark:text-slate-500">
+                        <i class="fa-solid fa-building-circle-exclamation text-3xl mb-3"></i>
+                        <p>검색 조건에 일치하는 대학 정보가 없습니다.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            data.forEach(univ => {
+                let badgeClass = "bg-blue-100 text-blue-700 dark:bg-blue-900/50 dark:text-blue-300";
+                if (univ.type === 'private') badgeClass = "bg-emerald-100 text-emerald-700 dark:bg-emerald-900/50 dark:text-emerald-300";
+                if (univ.type === 'cyber') badgeClass = "bg-purple-100 text-purple-700 dark:bg-purple-900/50 dark:text-purple-300";
+
+                const cardHtml = `
+                    <div class="bg-white dark:bg-slate-800 rounded-2xl p-6 border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
+                        <div>
+                            <div class="flex justify-between items-center mb-4">
+                                <h3 class="text-lg font-bold text-slate-900 dark:text-white">${univ.name}</h3>
+                                <span class="text-xs font-semibold px-2.5 py-1 rounded-md ${badgeClass}">${univ.typeName}</span>
+                            </div>
+                            <div class="space-y-1.5 mb-4">
+                                ${univ.departments.map(dept => {
+                                    let deptBadge = "";
+                                    if (dept.includes("통합")) deptBadge = "bg-blue-50 text-blue-600 dark:bg-blue-900/30 dark:text-blue-400 border border-blue-200 dark:border-blue-800";
+                                    else if (dept.includes("신설") || dept.includes("재편")) deptBadge = "bg-emerald-50 text-emerald-600 dark:bg-emerald-900/30 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800";
+                                    else if (dept.includes("변경")) deptBadge = "bg-amber-50 text-amber-600 dark:bg-amber-900/30 dark:text-amber-400 border border-amber-200 dark:border-amber-800";
+                                    else deptBadge = "bg-slate-50 text-slate-700 dark:bg-slate-700/60 dark:text-slate-300 border border-slate-100 dark:border-slate-700";
+
+                                    return `<div class="text-xs px-3 py-2 rounded-lg font-medium flex items-center justify-between ${deptBadge}">
+                                                <span>${dept}</span>
+                                                <i class="fa-solid fa-chevron-right text-[10px] opacity-40"></i>
+                                            </div>`;
+                                }).join('')}
+                            </div>
+                        </div>
+                        <div class="pt-3 border-t border-slate-100 dark:border-slate-700/60 text-[11px] text-slate-400 flex justify-between items-center">
+                            <span>학과 수: ${univ.departments.length}개</span>
+                            <span>최종 시점 기준</span>
+                        </div>
+                    </div>
+                `;
+                grid.innerHTML += cardHtml;
+            });
         }
+
+        // Filter Function
+        function filterUniversities() {
+            const searchKeyword = document.getElementById('searchInput').value.toLowerCase().trim();
+
+            const filtered = universities.filter(univ => {
+                const matchesCategory = (currentCategory === 'all') || (univ.type === currentCategory);
+                const matchesSearch = univ.name.toLowerCase().includes(searchKeyword) || 
+                                      univ.departments.some(d => d.toLowerCase().includes(searchKeyword));
+                
+                return matchesCategory && matchesSearch;
+            });
+
+            renderUniversities(filtered);
+        }
+
+        // Set Category Filter
+        function setCategoryFilter(category) {
+            currentCategory = category;
+
+            // Update button styles
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('bg-brand-600', 'text-white');
+                btn.classList.add('bg-slate-100', 'dark:bg-slate-700', 'text-slate-600', 'dark:text-slate-300');
+            });
+
+            event.target.classList.add('bg-brand-600', 'text-white');
+            event.target.classList.remove('bg-slate-100', 'dark:bg-slate-700', 'text-slate-600', 'dark:text-slate-300');
+
+            filterUniversities();
+        }
+
+        // Initial Render
+        window.addEventListener('DOMContentLoaded', () => {
+            renderUniversities(universities);
+        });
     </script>
 </body>
 </html>
